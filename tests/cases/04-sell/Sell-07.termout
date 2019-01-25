@@ -1,7 +1,7 @@
 Welcome to Pick-It Sales!
 Enter a command: 
 Enter a username: 
-Welcome, userFS!
+Welcome, userSS!
 Enter a command: 
-ERROR: You are already logged in!
-Enter a command:
+ERROR: Your account type may not sell tickets.
+Enter a command: 
