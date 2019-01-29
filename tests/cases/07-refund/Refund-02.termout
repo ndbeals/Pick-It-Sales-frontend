@@ -6,5 +6,5 @@ Enter a command:
 Enter the buyers username: 
 Enter the sellers username: 
 Enter the amount to refund: 
-ERROR: the refund amount must be positive.
+ERROR: The refund amount must be positive.
 Enter the amount to refund: 
