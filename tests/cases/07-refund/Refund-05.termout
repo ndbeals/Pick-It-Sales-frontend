@@ -3,7 +3,7 @@ Enter a command:
 Enter a username: 
 Welcome, admin!
 Enter a command: 
-Enter the buyers username: 
-Enter the sellers username: 
+Enter the buyer's username: 
+Enter the seller's username: 
 ERROR: The seller must exist to refund.
-Enter the sellers username: 
+Enter the seller's username: 
