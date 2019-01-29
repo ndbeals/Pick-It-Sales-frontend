@@ -5,6 +5,6 @@ Welcome, admin!
 Enter a command: 
 Enter an Event Title: 
 Enter a Sale Price: 
-ERROR: Price must be below 1000.
+ERROR: Price must be below $1000.
 Enter a Sale Price: 
-ERROR: Price must be above 0.
+ERROR: Price must be above $0.
