@@ -3,5 +3,6 @@ Enter a command:
 Enter a username: 
 Welcome admin!
 Enter a command: 
-ERROR: Invalid command.
-Enter a command: 
+Enter a new username: 
+ERROR: Characters not recognized.
+Enter a new username: 
