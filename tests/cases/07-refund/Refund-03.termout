@@ -3,8 +3,5 @@ Enter a command:
 Enter a username: 
 Welcome, userFS!
 Enter a command: 
-Enter an Event Title: 
-Enter a Sale Price: 
-# of Tickets to sell: 
-Successfully created a sale order.
+ERROR: only admins may issue refunds.
 Enter a command: 
