@@ -4,11 +4,16 @@
 class Command
 {
 private:
-    /* data */
+    std::string commandName;
+    char transactionNumber;
+
+    // virtual bool validateInput( std::string );
+
+    // processInput();
 public:
     int val;
     Command(/* args */);
-    ~Command();
+    virtual ~Command();
 
     virtual bool Process();
 

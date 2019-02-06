@@ -13,6 +13,7 @@ Command::~Command()
 
 bool Command::Process()
 {
+    printf("command process parent\n");
     return false;
 }
 
@@ -24,11 +25,20 @@ Command* Command::GetCommand( std::string commandName )
     {
         instance = new Login();
     }
+    // else if ( commandName == "" )
+    // {
 
-    (*instance).val = 5;
+    // }
+    else
+    {
+        instance = new Command();
+    }
 
-    printf("in class: %p\n" , (void *)instance);
+
+    // printf("val: %d\n",instance->val);
+    // (*instance).val = 5;
+
+    // printf("in class: %p\n" , (void *)instance);
     // printf("in class: %p\n" , (void *)*&instance);
-    printf("val: %d\n",instance->val);
     return instance;
 }

@@ -20,15 +20,16 @@ int main(int argc, char *argv[]) {
 
 	// string readin = UserInput::GetStringInput();
 	// int num = UserInput::GetIntegerInput(-1000,100);
-	float num = UserInput::GetFloatInput(-1000,1000);
+	// float num = UserInput::GetFloatInput(-1000,1000);
 
-	printf("input float: %f\n",num);
+	// printf("input float: %f\n",num);
 	// test inst(4);
 
 	bool run = true;
 	
 	while( run ){
 		// input = cin
+		printf("Enter a command: ");
 		std::string input = UserInput::GetStringInput();
 
 		if (input == "exit" ) {

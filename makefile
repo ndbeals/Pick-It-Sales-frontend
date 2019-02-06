@@ -29,7 +29,10 @@ OBJECTS     := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.$(OBJE
 #Defauilt Make
 all: resources $(TARGET)
 
+rebuild: cleaner resources build
+
 build: $(TARGET)
+
 
 #Remake
 remake: cleaner all
