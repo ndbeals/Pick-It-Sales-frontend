@@ -1,16 +1,17 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <string>
+#include "constants.h"
 
 // void errorPrintf()
 
-using namespace std;
+// using namespace std;
 
 void errorPrintf(const char* fmt, ...)
 {
     std::string newfmt = std::string(fmt);
 
-    newfmt = "ERROR: " + newfmt;
+    newfmt = ERROR_PREFIX + newfmt;
     // printf("\n\nthe format: %s \n\n",newfmt.c_str());
 
     va_list args;
@@ -19,10 +20,10 @@ void errorPrintf(const char* fmt, ...)
     va_end(args);
 }
 
-string trim(const string& str)
+std::string trim(const std::string& str)
 {
     size_t first = str.find_first_not_of(' ');
-    if (string::npos == first)
+    if (std::string::npos == first)
     {
         return str;
     }

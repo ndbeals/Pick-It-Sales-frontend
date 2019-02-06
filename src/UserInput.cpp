@@ -1,20 +1,22 @@
-// #include <iostream>
-// #include <string>
+#include <iostream>
+#include <string>
+
+#include "helperfunctions.h"
 // #include "HelperFunctions.cpp"
 
-using namespace std;
+// using namespace std;
 
 namespace UserInput {
 
 
-	string GetStringInput( int minLength = 1 , int maxLength = 15 ) 
+	std::string GetStringInput( uint minLength , uint maxLength ) 
 	{
 		bool validInput = false;
-		string input;
+		std::string input;
 
 		// loop while the input is not valid
 		while ( !validInput ) {
-			getline( cin , input );
+			std::getline( std::cin , input );
 			// trim leading and trailing spaces.
 			input = trim(input);
 
@@ -39,7 +41,7 @@ namespace UserInput {
 		return input;
 	}
 
-	int GetIntegerInput( int min = 0, int max = 10000 )
+	int GetIntegerInput( int min , int max )
 	{
 		// declare used variables.
 		bool validInput = false;
@@ -48,7 +50,7 @@ namespace UserInput {
 		// loop while the input is invalid
 		while( !validInput ) {
 			// Get string input from cin
-			string input = GetStringInput( 1 , 10 );
+			std::string input = GetStringInput( 1 , 10 );
 
 			try
 			{
@@ -58,7 +60,7 @@ namespace UserInput {
 				inputNum = std::stoi( input , &charCount );
 
 				// check if input stream is PURELY a number
-				if ( (input.length() == (int)charCount ) && (inputNum >= min && inputNum <= max) ) {
+				if ( (input.length() == (uint)charCount ) && (inputNum >= min && inputNum <= max) ) {
 					// If it didn't error, set validInput to true:
 					validInput = true;
 				}
@@ -80,7 +82,8 @@ namespace UserInput {
 		return inputNum;
 	}
 
-	float GetFloatInput( float min = 0.0f , float max = 10000.0f ) {
+	float GetFloatInput( float min , float max )
+	{
 		// declare used variables.
 		bool validInput = false;
 		float inputNum;
@@ -88,7 +91,7 @@ namespace UserInput {
 		// loop while the input is invalid
 		while( !validInput ) {
 			// Get string input from cin
-			string input = GetStringInput( 1 , 10 );
+			std::string input = GetStringInput( 1 , 10 );
 
 			try
 			{
@@ -98,7 +101,7 @@ namespace UserInput {
 				inputNum = std::stof( input , &charCount );
 
 				// check if input stream is PURELY a number
-				if ( (input.length() == (int)charCount ) && (inputNum >= min && inputNum <= max) ) {
+				if ( (input.length() == (uint)charCount ) && (inputNum >= min && inputNum <= max) ) {
 					// If it didn't error, set validInput to true:
 					validInput = true;
 				}
