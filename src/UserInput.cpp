@@ -1,20 +1,11 @@
-#include <iostream>
-#include <string>
-#include "HelperFunctions.cpp"
+// #include <iostream>
+// #include <string>
+// #include "HelperFunctions.cpp"
 
 using namespace std;
 
 namespace UserInput {
-	string trim(const string& str)
-	{
-		size_t first = str.find_first_not_of(' ');
-		if (string::npos == first)
-		{
-			return str;
-		}
-		size_t last = str.find_last_not_of(' ');
-		return str.substr(first, (last - first + 1));
-	}
+
 
 	string GetStringInput( int minLength = 1 , int maxLength = 15 ) 
 	{
@@ -61,7 +52,6 @@ namespace UserInput {
 
 			try
 			{
-				// printf(" char[0] : %c\n",input.find_first_not_of(' '));
 				// holds the amount of characters processed by stoi
 				size_t charCount;
 				// try to convert the string to an integer, using c++11 'stoi'
@@ -76,8 +66,6 @@ namespace UserInput {
 					// otherwise, error and restart
 					throw std::invalid_argument("");
 				}
-
-				// printf("read in: %s , ret: %d , char pos: %d" , input.c_str(), inputNum, (int)charCount);
 			}
 			catch(const std::invalid_argument& e)
 			{
@@ -88,9 +76,7 @@ namespace UserInput {
 			{
 				errorPrintf("Out of range error (how on earth did this happen?!)\n");
 			}
-			
 		}
-		
 		return inputNum;
 	}
 
@@ -106,7 +92,6 @@ namespace UserInput {
 
 			try
 			{
-				// printf(" char[0] : %c\n",input.find_first_not_of(' '));
 				// holds the amount of characters processed by stof
 				size_t charCount;
 				// try to convert the string to an integer, using c++11 'stof'
@@ -121,8 +106,6 @@ namespace UserInput {
 					// otherwise, error and restart
 					throw std::invalid_argument("");
 				}
-
-				// printf("read in: %s , ret: %f , char pos: %d" , input.c_str(), inputNum, (int)charCount);
 			}
 			catch(const std::invalid_argument& e)
 			{
@@ -133,9 +116,8 @@ namespace UserInput {
 			{
 				errorPrintf("Out of range error (how on earth did this happen?!)\n");
 			}
-			
 		}
-		
 		return inputNum;
 	}
 }
+
