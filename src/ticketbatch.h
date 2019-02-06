@@ -5,7 +5,11 @@
 #include <string>
 #include <vector>
 
-#include <User.h>
+#include "user.h"
+
+// #include <user.h>
+
+// class User {};
 
 class TicketBatch {
 private:
@@ -13,6 +17,8 @@ private:
     User sellerName;
     double price;
     int quantityAvailable;
+    int quantity;
+    User seller;
 public:
 	TicketBatch();
     TicketBatch(std::string eventTitle, double price, int quantityAvailable);
