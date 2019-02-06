@@ -3,7 +3,7 @@
 
 namespace UserInput {
 
-	std::string GetStringInput( uint minLength = 1 , uint maxLength = 25 );
+	std::string GetStringInput( unsigned int minLength = 1 , unsigned int maxLength = 25 );
 
     int GetIntegerInput( int min = 0, int max = 10000 );
 

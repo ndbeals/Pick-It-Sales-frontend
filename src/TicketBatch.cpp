@@ -7,13 +7,13 @@
 
 TicketBatch::TicketBatch() {
 	this->price = 0;
-	this->quantity = 0;
+	this->quantityAvailable = 0;
 }
 
 TicketBatch::TicketBatch(std::string eventTitle, double price, int quantityAvailable) {
 	this->eventTitle = eventTitle;
 	this->price = price;
-	this->quantity = quantityAvailable;
+	this->quantityAvailable = quantityAvailable;
 }
 
 TicketBatch TicketBatch::find(const std::string eventTitle, const int numberOfTickets, const std::string sellerName) {

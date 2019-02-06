@@ -1,5 +1,5 @@
 #ifndef TICKETBATCH_H
-#define TICKETBATCJ_H
+#define TICKETBATCH_H
 
 #include <iostream>
 #include <string>
@@ -14,11 +14,9 @@
 class TicketBatch {
 private:
     std::string eventTitle;
-    User sellerName;
+    User seller;
     double price;
     int quantityAvailable;
-    int quantity;
-    User seller;
 public:
 	TicketBatch();
     TicketBatch(std::string eventTitle, double price, int quantityAvailable);
