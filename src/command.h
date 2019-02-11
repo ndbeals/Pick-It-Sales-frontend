@@ -1,23 +1,49 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
+#include "session.h"
+
 class Command
 {
 private:
-    std::string commandName;
-    char transactionNumber;
+    static const char TransactionNumber;
 
     // virtual bool validateInput( std::string );
 
     // processInput();
+protected:
+
+    Session* userSession;
+
+
+    int testes;
 public:
-    int val;
-    Command(/* args */);
+    // Variable block
+    static const std::string CommandName;
+    
+
+    // Method block
+    // Command( Session );
+    Command(  );
+    Command( Session* );
     virtual ~Command();
 
     virtual bool Process();
 
-    static Command* GetCommand( std::string );
+    Session* getSession() { return userSession; }
+
+
+    virtual std::string GetCommandName() { return "empty"; }
+
+
+
+
+
+    const char GetTransactionNumber() { return TransactionNumber; }
+
+    virtual int gettest() {return testes;}
+
+    static Command* GetCommandNameFromInput( std::string , Session* );
 };
 
 

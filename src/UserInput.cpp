@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 
+#include "userinput.h"
+#include "constants.h"
 #include "helperfunctions.h"
 // #include "HelperFunctions.cpp"
 
@@ -11,12 +13,19 @@ namespace UserInput {
 
 	std::string GetStringInput( uint minLength , uint maxLength ) 
 	{
-		bool validInput = false;
+		// bool validInput = false;
 		std::string input;
 
 		// loop while the input is not valid
-		while ( !validInput ) {
+		// while ( !validInput ) {
 			std::getline( std::cin , input );
+			
+			
+			if (std::cin.eof()) {
+				exit(0);
+			}
+
+			
 			// trim leading and trailing spaces.
 			input = trim(input);
 
@@ -32,13 +41,19 @@ namespace UserInput {
 			}
 			else {
 				// validation passed.
-				validInput = true;
+				// validInput = true;
 			}
 
 			// printf("input is: %s\n",input.c_str());
-		}
+		// }
 
 		return input;
+	}
+
+	std::string GetCommandInput()
+	{
+		printf(COMMAND_PROMPT_PREFIX);
+		return GetStringInput(0,25);
 	}
 
 	int GetIntegerInput( int min , int max )

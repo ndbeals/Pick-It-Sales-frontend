@@ -1,4 +1,4 @@
-// #include <iostream>
+#include <iostream>
 #include <string>
 
 #include "constants.h"
@@ -7,6 +7,8 @@
 #include "userinput.h"
 #include "command.h"
 #include "commands/login.h"
+#include "commands/logout.h"
+#include "session.h"
 // #include "con"
 // #include "helperfunctions.cpp"
 // #include "userinput.cpp"
@@ -25,46 +27,76 @@ int main(int argc, char *argv[]) {
 	// printf("input float: %f\n",num);
 	// test inst(4);
 
+	// bool isLoggedIn = false;
+
 	bool run = true;
+
+	// std::string input;
+	// while( !std::cin.eof() ){
+	// 	auto test = std::getline( std::cin , input );
+	// 	/* code */
+	// 	printf("echo: %s\n",input.c_str());
+	// }
 	
-	while( run ){
+
+	///*
+	Session currentSession;
+	
+	while( true ){
+		currentSession = Session();
+		currentSession.num=1;
+
+		// printf("cs num: %d\n",currentSession.num);
+
+		// process user input / wait until they have logged in
+		currentSession.WaitForLogin();
+
+		// printf("main login? %d\b",currentSession.isLoggedIn());
+		// once logged in, process the main event loop
+		currentSession.ProcessMainEventLoop();
+
 		// input = cin
-		printf("Enter a command: ");
-		std::string input = UserInput::GetStringInput();
+		// printf("Enter a command: ");
+		// std::string input = UserInput::GetCommandInput();//UserInput::GetStringInput(0 , 25);
 
-		if (input == "exit" ) {
-			run = false;
-			// exit(0);
-			break;
-		}
-
-		Command *currentCommand = Command::GetCommand( input );
-
-		currentCommand->Process();
-
-		delete currentCommand;
-
-		// for(int i = 0; i < 1000; i++)
-		// {
-		// Command *currentCommand = Command::GetCommand( input );
-		// printf("main : %p\n",(void *)currentCommand);
-		// printf("val: %d\n",currentCommand->val);
-		// currentCommand->val = 6;
-		// printf("val: %d\n",currentCommand->val);
-
-		// Command test = *currentCommand;
-		// printf("main : %p\n",(void *)&test);
-		// printf("main : %p\n",(void *)&*&test);
-		// printf("val: %d\n",test.val);
-		// test.val = 1621;
-		// printf("val: %d\n",test.val);
-
-		// printf("val: %d\n",currentCommand->val);
-		// 	/* code */
-		// 	// delete test;
-		// 	delete currentCommand;
+		// if (input == "exit" ) {
+		// 	run = false;
+		// 	// exit(0);
+		// 	break;
 		// }
+
+		// // if (!isLoggedIn && input!="login")
+		// // {
+		// 	// errorPrintf("You must login before executing that command.\n");
+		// 	// break;
+		// 	// continue;
+		// // }
+		// // else
+		// // {
+		// 	// printf("login entered\n");
+		// 	// isLoggedIn
+		// // }
 		
+
+		// Command *currentCommand = Command::GetCommandNameFromInput( input , &currentSession);
+
+		// // bool suc = 
+		// currentCommand->Process();
+
+		// std::string test = currentCommand->GetCommandName(); //->GetCommandName();
+		// // int test = currentCommand->gettest();
+
+		// printf("commandname: %s\n",test.c_str());
+		// printf("testes: %d\n",currentCommand->gettest());
+
+		// // if (input=="login" && suc) {
+		// 	// isLoggedIn=true;
+		// // }
+		
+		// printf("cs num: %d\n\n\n\n",currentSession.num);
+
+		// delete currentCommand;
+
 
 	}
 
@@ -79,7 +111,7 @@ int main(int argc, char *argv[]) {
 			// do command again
 		// }
 	// }
-	
+	//*/
 
 	// printf("\n\ndebug: %s\n",readin.c_str());
 	return 0;

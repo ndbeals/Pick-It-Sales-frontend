@@ -1,8 +1,13 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+// STRING CONSTANTS
 #define ERROR_PREFIX "ERROR: "
-// #define ErrorPrintf(...) printf("macro ERROR: %s", ##__VA_ARGS__)
+#define COMMAND_PROMPT_PREFIX "Enter a command: "
+#define LOGIN_FIRST_PROMPT "You must login before executing that command.\n"
+#define LOGIN_TWICE_ERROR "You are already logged in!\n"
+
+// MIN & MAX VALUES
 #define MAX_ADD_CREDIT 1000
 #define MAX_CREDIT 999999.00
 #define MAX_EVENT_TITLE_LENGTH 25
