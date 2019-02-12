@@ -27,9 +27,13 @@ void Session::specialExitConditions()
     }
 }
 
-void Session::getCommandInput()
+void Session::readCommandInput()
 {
     this->userInput = UserInput::GetCommandInput();//UserInput::GetStringInput(0 , 25);
+    
+    if (this->userInput=="exit" || std::cin.eof()){
+        exit(0);
+    }
 }
 
 // Prompt for a command (login only) until the user has logged in successfully, then we can continue
@@ -37,13 +41,12 @@ void Session::WaitForLogin()
 {
     while ( this->isLoggedOut() )
     {
-        this->getCommandInput();
+        this->readCommandInput();
 
         if ( this->userInput == Login::CommandName )
         {
             // printf("static worked\n");
 
-            this->specialExitConditions();
 
             Login loginCommand = Login( this );
 
@@ -69,7 +72,7 @@ void Session::ProcessMainEventLoop()
         // printf("proc man lop\n");
     while( this->isLoggedIn() ){
         // printf("proc man lop\n");
-        this->getCommandInput();
+        this->readCommandInput();
 
         this->specialExitConditions();
 

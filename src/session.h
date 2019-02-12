@@ -40,7 +40,9 @@ public:
 
 	void specialExitConditions();
 
-	void getCommandInput();
+	void readCommandInput();
+
+	std::string getLastUserInput();
 
 	bool isLoggedIn() { return (getSessionState() == SessionState::User || getSessionState() == SessionState::Admin); }
 	void LogIn();
