@@ -24,6 +24,17 @@
         "system_error": "cpp",
         "type_traits": "cpp",
         "typeinfo": "cpp",
-        "string": "cpp"
-    }
+        "string": "cpp",
+        "array": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp",
+        "fstream": "cpp",
+        "optional": "cpp",
+        "sstream": "cpp",
+        "tuple": "cpp",
+        "utility": "cpp"
+    },
+    "files.eol": "\n",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
 }

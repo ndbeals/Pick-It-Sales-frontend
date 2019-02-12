@@ -7,14 +7,11 @@ TESTDIR="./tests"
 CASES="$TESTDIR/cases"
 RESULTS="$TESTDIR/results"
 
-
 year=$(date +'%Y')
 month=$(date +'%m')
 day=$(date +'%d')
 
-# ls -la
-# as="./test2"
-# ("$BIN") <"$as" 
+
 
 compare_output() {
     local expected="$1"
@@ -22,27 +19,40 @@ compare_output() {
 
     # fix newlines in the output file.
     sed -i -e 's/ERROR:/ERROR-/g; s/: /: \n/g; s/ERROR-/ERROR: /g' "$result"
+    # sed -i '$a\' "$result"
 
     #compare them.
-    results=$(diff --suppress-common-lines -y -q -Z "$expected" "$result")
+    results=$(diff --suppress-common-lines -y -Z -T -t "$expected" "$result")
     # results=$(cmp "$expected" "$result")
+    echo "$results" >> "$SUMMARYFILE"
 
-    echo "RESULTS: $results"
+    if [ -z "$results" ]
+    then
+        # echo -e "$current_test\t\tPassed!"
+        printf "%-25s \033[32m%s\033[0m\n" "$current_test" "PASSED!"
+    else
+        # echo -e "$current_test\t\tFailed!"
+        printf "%-25s \033[31m%s\033[0m\n" "$current_test" "FAILED!"
+    fi
+    # echo -e "\n\nRESULTS:\n$results"
+    # echo "Ran test"
 }
 
 run_test_case() {
-    local filepath="$1"
-    local fullfilename=$(basename -- "$filepath")
-    local extension="${fullfilename##*.}"
-    local filename="${fullfilename%.*}"
-    local testdir=$(dirname $filepath)
+    local filepath fullfilename filename testdir
+    filepath="$1"
+    fullfilename=$(basename -- "$filepath") || true
+    # local extension="${fullfilename##*.}" || true
+    filename="${fullfilename%.*}"
+    testdir=$(dirname "$filepath")
 
     if [ ! -d "$resultdir/$casename" ]; then
         mkdir -p "$resultdir/$casename"
     fi
 
 
-    (sed -e '$a\' "$filepath" | "$BIN") >"$resultdir/$casename/$filename.output"
+    (sed -e '$a\' "$filepath" | "$BIN") > "$resultdir/$casename/$filename.output"
+    # (cat "$filepath" | "$BIN") >"$resultdir/$casename/$filename.output"
     # echo "before error"
 
     compare_output "$testdir/$filename.termout" "$resultdir/$casename/$filename.output"
@@ -54,6 +64,11 @@ parse_case() {
     # echo $case
 
     for file in $case/*.input; do
+        current_test=$(basename $file)
+        
+        echo -e "--------------------------------------------------------------------------------------------------------------------------------" >> "$SUMMARYFILE"
+        echo -e "\t\t\t\t\t\tStarting Test: $current_test" >> "$SUMMARYFILE"
+        echo -e "--------------------------------------------------------------------------------------------------------------------------------" >> "$SUMMARYFILE"
         run_test_case "$file"
     done
 
@@ -64,8 +79,10 @@ parse_cases_dir () {
     for casedir in $CASES/*/; do
         casedir=${casedir%*/}
         casename=$(basename $casedir)
-        echo $casedir
+
+        echo -e "\nStarting New Test Case Set: $casename" >> "$SUMMARYFILE"
         parse_case "$casedir"
+        echo -e "--------------------------------------------------------------------------------------------------------------------------------\n\n" >> "$SUMMARYFILE"
     done
 
     # wait
@@ -74,17 +91,21 @@ parse_cases_dir () {
 create_results_dir () {
     # echo "$RESULTS/$year/$month-$day/"
     # get run count
-    runnumber=$(ls -l "$RESULTS/$year/$month-$day/run-"* 2>/dev/null | grep run- | wc -l)
+    runnumber=$(ls -dl "$RESULTS/$year/$month-$day/run-"* 2>/dev/null | grep run- | wc -l)
     # runnumber=$(($runnumber+1))
     # echo $runnumber
     
+    
     mkdir -p "$RESULTS/$year/$month-$day/run-$runnumber"
 
+    # Set resultdir and SUMMARYFILE variables to make life easier for me later
     resultdir="$RESULTS/$year/$month-$day/run-$runnumber"
+    SUMMARYFILE="$resultdir/summary.txt"
 
-    # echo "RESRSET" $resultdir
-    # mkdir -p
-    
+    # Remove the summary file if it exists (shouldn't), ignore errors if it cant remove (pipe to null).
+    rm      "$SUMMARYFILE" 2>/dev/null
+    # Create empty summary file
+    touch   "$SUMMARYFILE"
 }
 
 main () {

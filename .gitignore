@@ -1,6 +1,8 @@
 ./src/main
 ./main
 
+tests/results/**/
+
 # Prerequisites
 *.d
 
