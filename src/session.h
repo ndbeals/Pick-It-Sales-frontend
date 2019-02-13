@@ -4,12 +4,7 @@
 #include <map>
 #include "transaction.h"
 #include "user.h"
-// #include "command.h"
 
-// forward declare the transaction class for use here.
-// class Trans;
-// class Command;
-// class User;
 
 /**
  * \brief Session class manages the session state.
@@ -55,7 +50,10 @@ public:
 	// Variable block
 
 	// Method block
+	/// Session constructor
+	///  set state to logged out by default
 	Session(/* args */);
+	/// Stub deconstructor (must exist though)
 	~Session();
 
 	/** Prompts user for a command (only accepts 'login'). 

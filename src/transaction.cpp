@@ -13,9 +13,11 @@
 #include "userinput.h"
 
 
-/**
- * Proccess the user buying a ticket
- */ 
+/** Process the user buy a ticket.
+ * @param User buyer - buyer of ticket
+ * @param TicketBatch ticketBatch - the ticket to purchase
+ * @param int numberOfTickets -number of tickets to buy
+*/
 void Transaction::buyTicket(User buyer, TicketBatch ticketBatch, int numberOfTickets) {
     User seller = ticketBatch.getSeller();
     bool validAmount = numberOfTickets > 0 && 
@@ -25,16 +27,7 @@ void Transaction::buyTicket(User buyer, TicketBatch ticketBatch, int numberOfTic
     // check if number of tickets the user wishes to purchase is less than or equal to the number available
     if (validAmount) {
         // if valid quantity check if buyer has enough credit
-        double totalTicketCost = ticketBatch.getPrice() * numberOfTickets;
-
-        // if (totalTicketCost > buyer.getCredit()) {
-        //     // subtract amount from buyer account
-
-        //     // add amount to seller account
-        // } else {
-        //     // error buyer does not have enough credit
-        //     errorPrintf("Not enough credit");
-        // }
+        double totalTicketCost = ticketBatch.getPrice() * numberOfTickets;s
 
         // write to transaction log
     } else {
@@ -72,37 +65,3 @@ Transaction::~Transaction()
 {
 
 }
-
-// int main(int argc, char *argv[]) { 
-//     std::string userInput = "buy"; //= UserInput::GetStringInput();
-
-//     TRANSACTION requestedTransaction = T04_BUY;//commandToTransaction.at(userInput); 
-
-//     switch (requestedTransaction) {
-//         case T00_END_OF_SESSION:
-//             /* code */
-//             break;
-//         case T01_CREATE:
-//             /* code */
-//             break;
-//         case T02_DELETE:
-//             /* code */
-//             break;
-//         case T03_SELL:
-//             /* code */
-//             break;
-//         case T04_BUY:
-//             /* code */
-//             break;
-//         case T05_REFUND:
-//             /* code */
-//             break;
-//         case T06_ADD_CREDIT:
-//             /* code */
-//             break;    
-//         default:
-//             break;
-//     }
-
-//     return 0;
-// }

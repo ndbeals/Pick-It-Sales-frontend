@@ -4,15 +4,14 @@
 #include "userinput.h"
 #include "constants.h"
 #include "helperfunctions.h"
-// #include "HelperFunctions.cpp"
-
-// using namespace std;
 
 namespace UserInput {
 
 	/**
-	 * Read a string input from the command line.
-	 * 
+	 * Read a string input from the command line
+	 * @param minLength Minimum length of the input string (default=1)
+	 * @param maxLength Maximum length of the input string (default=25)
+	 * @return the user input as a string
 	 */
 	std::string GetStringInput( uint minLength , uint maxLength ) 
 	{
@@ -53,12 +52,22 @@ namespace UserInput {
 		return input;
 	}
 
+	/**
+	 * GetCommandInput wraps GetStringInput and just prints a text prompt before asking for input
+	 * @return the user input as a string
+	 * @see GetStringInput
+	 */
 	std::string GetCommandInput()
 	{
 		printf(COMMAND_PROMPT_PREFIX);
 		return GetStringInput(0,25);
 	}
 
+	/**
+	 * Read an integer input from the command line, takes a max and min value
+	 * @param min Minimum value of the integer (default=0)
+	 * @param max Maximum value of the integer (default=10000)
+	 */
 	int GetIntegerInput( int min , int max )
 	{
 		// declare used variables.
@@ -100,6 +109,11 @@ namespace UserInput {
 		return inputNum;
 	}
 
+	/**
+	 * Read an integer float from the command line, takes a max and min value
+	 * @param min Minimum value of the float (default=0)
+	 * @param max Maximum value of the float (default=10000)
+	 */
 	float GetFloatInput( float min , float max )
 	{
 		// declare used variables.

@@ -16,11 +16,13 @@ Session::Session(/* args */)
 {
     this->sessionState = SessionState::New;
 }
-
+/// Stub deconstructor (must exist though)
 Session::~Session()
 {
 }
 
+/// Wrapper function for reading command inputs, also checks for eof on std::cin and exits if true.
+	/// @see UserInput::GetCommandInput
 void Session::ReadCommandInput()
 {
     this->userInput = UserInput::GetCommandInput();/// UserInput::GetStringInput(0 , 25);
@@ -30,12 +32,19 @@ void Session::ReadCommandInput()
     }
 }
 
+/** Returns the stored last user input.
+ * @return last user Input.
+ * @see ReadCommandInput
+ */
 std::string Session::getLastUserInput()
 {
     return this->userInput;
 }
 
-// Prompt for a command (login only) until the user has logged in successfully, then we can continue
+/** Prompts user for a command (only accepts 'login'). 
+ * 
+ * processes that login command, changes the state upon login, then returns control.
+ */
 void Session::WaitForLogin()
 {
     while ( this->isLoggedOut() )
@@ -64,6 +73,11 @@ void Session::WaitForLogin()
     }
 }
 
+/**
+ * The "bulk" of the program.
+ * 
+ * This handles all the other user commands inputs, instantiates command objects to process the input, stores the transactions and writes them out.
+ */
 void Session::ProcessMainEventLoop()
 {
         // printf("proc man lop\n");
@@ -79,6 +93,7 @@ void Session::ProcessMainEventLoop()
     
 }
 
+/// Log in the user, sets the state to logged in.
 bool Session::LogIn( )
 {
     // printf("active? %d\n",isActive());
@@ -90,8 +105,7 @@ bool Session::LogIn( )
     return false;
 }
 
-// Session::LogOut
-//  
+/// Log the user out, sets the state to logged out.
 bool Session::LogOut()
 {
     if ( isLoggedIn() ){
@@ -102,7 +116,9 @@ bool Session::LogOut()
 }
 
 
-// Add transaction adds a valid transaction to the queue
+/** Adds a new Transaction to the transaction queue (validTransactions).
+ * @param Transaction to store
+ */
 void Session::AddTransaction( Transaction* validTransaction )
 {
     validTransactions.push( validTransaction );

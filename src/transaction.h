@@ -20,7 +20,7 @@ public:
     */
     void addCredit(User user, double creditToAdd);
 
-    /**
+    /** Process the user buy a ticket.
      * @param User buyer - buyer of ticket
      * @param TicketBatch ticketBatch - the ticket to purchase
      * @param int numberOfTickets -number of tickets to buy

@@ -17,27 +17,3 @@ User::~User()
 {
 }
 
-
-// #include <iostream>
-// #include <fstream>
-// #include <sstream>
-// #include <string>
-// #include <vector>
-// #include <algorithm>
-// #include <cstdio>
-
-// #include "constants.h"
-// #include "helperfunctions.h"
-// #include "ticketbatch.h"
-// #include "transaction.h"
-// #include "userinput.h"
-
-// User::User()
-// {
-    
-// }
-
-// User::~User()
-// {
-
-// }
