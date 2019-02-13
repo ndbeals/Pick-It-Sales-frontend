@@ -3,16 +3,17 @@
 
 #include <string>
 #include <vector>
+#include "user.h"
 
-class UserTransaction {
+class Transaction {
 private:
 
 
 public:
-	UserTransaction();
+	Transaction();
     void addCredit(const User user, const double creditToAdd);
-    void buyTicket(const User buyer, const TicketBatch ticketBatch);
-    void removeCredit(const User user, const double creditToSubtract);
+    // void buyTicket(const User buyer, const TicketBatch ticketBatch);
+    void removeCredit(User , double );
     void refund(const User buyer, const User seller, const double creditAmount);
 };
 

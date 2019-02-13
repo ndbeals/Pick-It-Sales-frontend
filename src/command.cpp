@@ -8,7 +8,7 @@
 Command::Command(  )
 {
     // userSession = &inSession;
-
+    // this->CommandName =
     // printf("parent constructor\n");
     testes=-1;
 }

@@ -7,6 +7,7 @@ class Command
 {
 private:
     static const char TransactionNumber;
+    static const std::string CommandName;
 
     // virtual bool validateInput( std::string );
 
@@ -19,7 +20,6 @@ protected:
     int testes;
 public:
     // Variable block
-    static const std::string CommandName;
     
 
     // Method block

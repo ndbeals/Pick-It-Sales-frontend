@@ -1,5 +1,7 @@
 #ifndef SESSION_H
 #define SESSION_H
+#include <queue>
+#include "transaction.h"
 
 enum SessionState
 {
@@ -16,7 +18,11 @@ private:
 	// store the session state
 	SessionState sessionState;
 
+	// The latest input from the user.
 	std::string userInput;
+
+	// Queue of all successful transactions
+	std::queue< Transaction > validTransactions;
 public:
 	// Variable block
 	int num;
@@ -38,9 +44,9 @@ public:
 	SessionState getSessionState() { return sessionState; }
 	void setSessionState( SessionState newState ) { sessionState = newState; }
 
-	void specialExitConditions();
+	// void specialExitConditions();
 
-	void readCommandInput();
+	void ReadCommandInput();
 
 	std::string getLastUserInput();
 

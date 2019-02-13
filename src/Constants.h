@@ -16,13 +16,16 @@
 #define MAX_TICKETS_FOR_SALE 100
 #define MAX_USERNAME_LENGTH 15
 
-// TRANSACTIONS
-#define T00_END_OF_SESSION "00"
-#define T01_CREATE "01"
-#define T02_DELETE "02"
-#define T03_SELL "03"
-#define T04_BUY "04"
-#define T05_REFUND "05"
-#define T06_ADD_CREDIT "06"
+// TRANSACTION TYPES
+enum TRANSACTION {
+    T00_END_OF_SESSION = 00,
+    T01_CREATE = 01,
+    T02_DELETE = 02,
+    T03_SELL = 02,
+    T04_BUY = 04,
+    T05_REFUND = 05,
+    T06_ADD_CREDIT = 06
+};
+
 
 #endif

@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <queue>
 
 #include "userinput.h"
 #include "session.h"
@@ -20,14 +21,14 @@ Session::~Session()
 {
 }
 
-void Session::specialExitConditions()
-{
-    if (this->userInput=="exit" || std::cin.eof()){
-        exit(0);
-    }
-}
+// void Session::specialExitConditions()
+// {
+//     if (this->getLastUserInput()=="exit" || std::cin.eof()){
+//         exit(0);
+//     }
+// }
 
-void Session::readCommandInput()
+void Session::ReadCommandInput()
 {
     this->userInput = UserInput::GetCommandInput();//UserInput::GetStringInput(0 , 25);
     
@@ -36,14 +37,19 @@ void Session::readCommandInput()
     }
 }
 
+std::string Session::getLastUserInput()
+{
+    return this->userInput;
+}
+
 // Prompt for a command (login only) until the user has logged in successfully, then we can continue
 void Session::WaitForLogin()
 {
     while ( this->isLoggedOut() )
     {
-        this->readCommandInput();
+        this->ReadCommandInput();
 
-        if ( this->userInput == Login::CommandName )
+        if ( this->getLastUserInput() == Login::CommandName )
         {
             // printf("static worked\n");
 
@@ -72,11 +78,9 @@ void Session::ProcessMainEventLoop()
         // printf("proc man lop\n");
     while( this->isLoggedIn() ){
         // printf("proc man lop\n");
-        this->readCommandInput();
+        this->ReadCommandInput();
 
-        this->specialExitConditions();
-
-        Command *currentCommand = Command::GetCommandNameFromInput( this->userInput , this );
+        Command *currentCommand = Command::GetCommandNameFromInput( this->getLastUserInput() , this );
         currentCommand->Process();
 
         delete currentCommand;

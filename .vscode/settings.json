@@ -32,7 +32,8 @@
         "optional": "cpp",
         "sstream": "cpp",
         "tuple": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "queue": "cpp"
     },
     "files.eol": "\n",
     "python.linting.pylintEnabled": true,

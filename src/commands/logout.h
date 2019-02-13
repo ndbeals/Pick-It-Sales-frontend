@@ -10,7 +10,7 @@ private:
     /* data */
 public:
     // Variable Block
-    // int testes;
+    static const char TransactionNumber;
     static const std::string CommandName;
 
     // Method Block

@@ -6,7 +6,7 @@
 #include "../session.h"
 
 const std::string Logout::CommandName = "logout";
-
+const char Logout::TransactionNumber = 0; // 00;
 
 Logout::Logout( Session* inSession)
 {
