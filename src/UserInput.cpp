@@ -10,7 +10,10 @@
 
 namespace UserInput {
 
-
+	/**
+	 * Read a string input from the command line.
+	 * 
+	 */
 	std::string GetStringInput( uint minLength , uint maxLength ) 
 	{
 		// bool validInput = false;

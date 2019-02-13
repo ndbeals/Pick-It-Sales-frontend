@@ -14,8 +14,13 @@
 // #include "userinput.cpp"
 // #include "Commands.cpp"
 
-
-
+/// \file
+/**
+ \brief  Main function
+ \param  argc An integer argument count of the command line arguments
+ \param  argv An argument vector of the command line arguments
+ \return an integer 0 upon exit success
+*/
 int main(int argc, char *argv[]) {
 
 	printf("Welcome to Pick-It Sales!\n");

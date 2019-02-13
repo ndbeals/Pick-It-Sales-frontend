@@ -88,18 +88,24 @@ void Session::ProcessMainEventLoop()
     
 }
 
-void Session::LogIn( )
+bool Session::LogIn( )
 {
     // printf("active? %d\n",isActive());
     if ( isActive() && isLoggedOut() )
     {
         setSessionState( SessionState::User );
+        return true;
     }
+    return false;
 }
 
-void Session::LogOut()
+// Session::LogOut
+//  
+bool Session::LogOut()
 {
     if ( isLoggedIn() ){
         this->setSessionState( SessionState::LoggedOut );
+        return true;
     }
+    return false;
 }

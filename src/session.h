@@ -3,25 +3,37 @@
 #include <queue>
 #include "transaction.h"
 
-enum SessionState
-{
-	Error,
-	New,
-	User,
-	Admin,
-	LoggedOut,
-};
+/// ENUM DEF
 
+/**
+ * Session class manages the session state.
+ * This class manages "the bulk" of the program. 
+ * It runs the event loop, asks for user input, passes that input to functions,
+ * stores valid transactions, and writes out the files at the end
+ */
 class Session
 {
+	public:
+	/// This is an enum class
+	enum SessionState
+	{
+		Error,
+		New,
+		User,
+		Admin,
+		LoggedOut,
+	};
 private:
-	// store the session state
+	/// store the session state
 	SessionState sessionState;
 
-	// The latest input from the user.
+	/// The latest input from the user.
 	std::string userInput;
 
 	// Queue of all successful transactions
+	/**
+	 * Queue Transaction
+	 */
 	std::queue< Transaction > validTransactions;
 public:
 	// Variable block
@@ -51,9 +63,10 @@ public:
 	std::string getLastUserInput();
 
 	bool isLoggedIn() { return (getSessionState() == SessionState::User || getSessionState() == SessionState::Admin); }
-	void LogIn();
+	bool LogIn();
+	
 	bool isLoggedOut() { return (getSessionState() == SessionState::LoggedOut || getSessionState() == SessionState::New); }
-	void LogOut();
+	bool LogOut();
 
 	bool isAdmin() { return (getSessionState() == SessionState::Admin); }
 
