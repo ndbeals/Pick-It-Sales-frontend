@@ -40,9 +40,9 @@ Command* Command::GetCommandNameFromInput( std::string commandName , Session* se
 {
     Command *instance;
 
-    printf("com num: %d\n",session->num);
-    session->num = 2;
-    printf("com num: %d\n",session->num);
+    // printf("com num: %d\n",session->num);
+    // session->num = 2;
+    // printf("com num: %d\n",session->num);
 
 
     if ( commandName == "login" )

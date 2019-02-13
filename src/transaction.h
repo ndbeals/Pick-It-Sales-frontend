@@ -13,6 +13,7 @@ private:
 
 public:
 	Transaction();
+    ~Transaction();
 
     /**
      * @param User; user account to add credit to

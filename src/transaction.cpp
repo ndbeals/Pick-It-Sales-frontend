@@ -63,6 +63,16 @@ void Transaction::refund(User buyer, User seller, double amount) {
     }
 }
 
+Transaction::Transaction()
+{
+    
+}
+
+Transaction::~Transaction()
+{
+
+}
+
 // int main(int argc, char *argv[]) { 
 //     std::string userInput = "buy"; //= UserInput::GetStringInput();
 

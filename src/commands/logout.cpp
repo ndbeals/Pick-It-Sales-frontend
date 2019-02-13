@@ -24,13 +24,8 @@ Logout::~Logout()
 
 bool Logout::Process()
 {
-    // if ( userSession->isLoggedIn() )
-    // {
-    getSession()->LogOut();
-
+    bool success = getSession()->LogOut();
     printf("Logged out!\n");
-    // }
-    
-    printf("logout process\n");
-    testes=1;
+
+    return success;   
 }

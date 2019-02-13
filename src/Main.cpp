@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
 	
 	while( true ){
 		currentSession = Session();
-		currentSession.num=1;
+		// currentSession.num=1;
 
 		// printf("cs num: %d\n",currentSession.num);
 

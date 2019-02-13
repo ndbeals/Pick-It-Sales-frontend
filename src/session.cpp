@@ -10,8 +10,8 @@
 #include "command.h"
 #include "commands/login.h"
 
-// Session constructor
-//  set state to logged out by default
+/// Session constructor
+///  set state to logged out by default
 Session::Session(/* args */)
 {
     this->sessionState = SessionState::New;
@@ -21,16 +21,9 @@ Session::~Session()
 {
 }
 
-// void Session::specialExitConditions()
-// {
-//     if (this->getLastUserInput()=="exit" || std::cin.eof()){
-//         exit(0);
-//     }
-// }
-
 void Session::ReadCommandInput()
 {
-    this->userInput = UserInput::GetCommandInput();//UserInput::GetStringInput(0 , 25);
+    this->userInput = UserInput::GetCommandInput();/// UserInput::GetStringInput(0 , 25);
     
     if (this->userInput=="exit" || std::cin.eof()){
         exit(0);
@@ -51,8 +44,6 @@ void Session::WaitForLogin()
 
         if ( this->getLastUserInput() == Login::CommandName )
         {
-            // printf("static worked\n");
-
 
             Login loginCommand = Login( this );
 
@@ -108,4 +99,11 @@ bool Session::LogOut()
         return true;
     }
     return false;
+}
+
+
+// Add transaction adds a valid transaction to the queue
+void Session::AddTransaction( Transaction* validTransaction )
+{
+    validTransactions.push( validTransaction );
 }
