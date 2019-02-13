@@ -1,6 +1,10 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+// #include <boost/assign/list_of.hpp>
+// #include <boost/unordered_map.hpp>
+#include <map>
+
 // STRING CONSTANTS
 #define ERROR_PREFIX "ERROR: "
 #define COMMAND_PROMPT_PREFIX "Enter a command: "
@@ -21,11 +25,20 @@ enum TRANSACTION {
     T00_END_OF_SESSION = 00,
     T01_CREATE = 01,
     T02_DELETE = 02,
-    T03_SELL = 02,
+    T03_SELL = 03,
     T04_BUY = 04,
     T05_REFUND = 05,
     T06_ADD_CREDIT = 06
 };
 
+// const boost::map<const char*, TRANSACTION> commandToTransaction = boost::assign::map_list_of
+//     ("exit", T00_END_OF_SESSION)
+//     ("create", T01_CREATE)
+//     ("delete",T02_DELETE)
+//     ("sell", T03_SELL)
+//     ("buy", T04_BUY)
+//     ("refund", T05_REFUND)
+//     ("addcredit", T06_ADD_CREDIT)
+// ;
 
 #endif

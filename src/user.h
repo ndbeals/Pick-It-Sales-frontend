@@ -8,7 +8,11 @@ private:
 public:
     User();
     ~User();
-    // isPrivliged();
+
+    /**
+     * @return bool; true if user is a privileged user, false otherwise
+     */ 
+    //bool isPrivileged();
 };
 
 

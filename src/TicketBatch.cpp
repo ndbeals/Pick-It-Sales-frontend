@@ -16,6 +16,9 @@ TicketBatch::TicketBatch(std::string eventTitle, double price, int quantityAvail
 	this->quantityAvailable = quantityAvailable;
 }
 
+/**
+ * Locate tickets matching the given criteria 
+ */ 
 TicketBatch TicketBatch::find(const std::string eventTitle, const int numberOfTickets, const std::string sellerName) {
 	TicketBatch ticket;
 
@@ -43,6 +46,9 @@ int TicketBatch::getQuantityAvailable(){
 	this->quantityAvailable;
 }
 
+/**
+ * Sets quantity of tickets available for purchase
+ */ 
 void TicketBatch::setQuantityAvailable(const int quantityAvailable) {
 	this->quantityAvailable = quantityAvailable;
 }
