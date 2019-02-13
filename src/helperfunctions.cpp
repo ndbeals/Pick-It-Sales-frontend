@@ -9,23 +9,31 @@
 #include "user.h"
 #include "session.h"
 
-// void errorPrintf()
+/** \file
+ * Helper Functions provides some useful, static functions that're helpful to have or don't have a better place to go.
+ */
 
-// using namespace std;
-
+/** A Wrapper function for printf that just prepends the ERROR_PREFIX to the output
+ * @param Format of the output
+ * @param Varaidic arguments to print
+ */
 void errorPrintf(const char* fmt, ...)
 {
     std::string newfmt = std::string(fmt);
 
     newfmt = ERROR_PREFIX + newfmt;
-    // printf("\n\nthe format: %s \n\n",newfmt.c_str());
 
+    // create a vararg list from the passed varargs
     va_list args;
+    // do the print
     va_start(args,fmt);
     vprintf(newfmt.c_str(),args);
     va_end(args);
 }
 
+/** Trim leading and trailing spaces from a string.
+ * @param String to trim.
+ */
 std::string trim(const std::string& str)
 {
     size_t first = str.find_first_not_of(' ');
@@ -37,36 +45,35 @@ std::string trim(const std::string& str)
     return str.substr(first, (last - first + 1));
 }
 
-
+/** Read the available users file and parse it into a map where the keys are the string names and the values are the user objects.
+ * @return map< string , User > of available users.
+ */
 std::map<std::string, class User> readUsersFile( )
 {
     std::map<std::string, class User> availableUsers;
     std::string line;
-    std::ifstream usersFile ("./CurrentUserAccounts.txt");
+    std::ifstream usersFile (USERS_ACCOUNT_FILE);
 
-    // printf("ok ... %i" , usersFile.is_open() );
-
-    // if ( usersFile.is_open() )
-    // {
-    // printf("trying to open: %s",USERS_ACCOUNT_FILE);
+    if ( usersFile.is_open() )
+    {
         while( std::getline( usersFile , line ))
         {
+            // create a stringstream of each line
             std::istringstream lineStream(line);
-            // printf("read line: %s\n",line);
 
+            // three variables used to populate the user object
             std::string name;
             std::string type;
             float balance;
 
+            // read from the line stream
             lineStream >> name >> type >> balance;
 
+            // create the user and insert them into the availableusers map
             User aUser(name,type,balance);
-        
             availableUsers.insert(std::pair<std::string,class User>(name,aUser));
-            // Session::AvailableUsers.insert(std::pair<std::string,class User>(name,aUser));
         }
-        
-    // }
+    }
 
     return availableUsers;
 }

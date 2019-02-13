@@ -1,9 +1,10 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-// #include <boost/assign/list_of.hpp>
-// #include <boost/unordered_map.hpp>
-// #include <map>
+/**
+ * Here defines all the global constants we use.
+ */
+
 
 // FILE NAMES
 #define USERS_ACCOUNT_FILE "./CurrentUserAccounts.txt"

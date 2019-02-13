@@ -1,17 +1,19 @@
 #ifndef LOGIN_H
 #define LOGIN_H
 
-// #include <map>
-
-// class Command;
 #include "../command.h"
 #include "../session.h"
 
+/** Login class is a child of the Command class.
+ * 
+ * Login implements functionality specific to loggin into the system, username checking, session state changing, etc
+ */ 
 class Login : public Command
 {
 private:
     /** Validates that the user input is a valid username. 
-     * @param username
+     * @param user input.
+     * @return Valid user name or not.
      */
     bool validateInput( std::string );
 
@@ -29,12 +31,18 @@ public:
     /// Stub deconstructor (must exist though)
     ~Login();
 
-    
+    /** Processes the login command.
+     * 
+     * this entails asking the user for a username to login as, validating that, and then returning whether the login was successful. 
+     * @return Login success.
+     */
     bool Process();
 
+    /** Returns the command name of this command ('login').
+     * @return Command name.
+     */
     std::string GetCommandName() { return CommandName; }
 
-    int gettest() {return testes;}
 };
 
 

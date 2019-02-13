@@ -21,17 +21,19 @@ Login::Login( Session* inSession )
 Login::Login()
 {}
 
-/// Stub deconstructor
+/// Stub deconstructor (must exist though)
 Login::~Login()
 {
 }
 
+
 /** Validates that the user input is a valid username. 
- * @param user name
+ * @param user input.
+ * @return Valid user name or not.
  */
-bool isValidUsername( std::string name )
+bool Login::validateInput( std::string input )
 {
-    if ( Session::AvailableUsers.find(name) == Session::AvailableUsers.end() )
+    if ( Session::AvailableUsers.find(input) == Session::AvailableUsers.end() )
     {
         // not found
         return false;
@@ -39,21 +41,12 @@ bool isValidUsername( std::string name )
     return true;
 }
 
-/** Validates that the user input is a valid username. 
- * @param user input
- */
-bool Login::validateInput( std::string input )
-{
-    if ( isValidUsername( input ) ) 
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
 
+/** Processes the login command.
+ * 
+ * this entails asking the user for a username to login as, validating that, and then returning whether the login was successful. 
+ * @return Login success.
+ */
 bool Login::Process()
 {
     // check if already logged in, if so, print the associated error and return
@@ -63,14 +56,12 @@ bool Login::Process()
         return true;
     }
 
-
-    bool success = false;
-
     printf("Enter a username: ");
 
+    // Loop continuously until we get a valid input.    
+    bool success = false;
     while ( !success )
     {
-
         std::string username = UserInput::GetStringInput( 0 , 15 );
 
         if ( this->validateInput( username ) )
@@ -83,11 +74,7 @@ bool Login::Process()
         else
         {
             printf("Invalid username, try again: ");
-            // return false;
         }
-
-        // printf("\n\nYou entered: %s\n",username.c_str());
-
     }
 
     return success;
