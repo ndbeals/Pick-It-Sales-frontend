@@ -7,38 +7,41 @@
 #include "../command.h"
 #include "login.h"
 
-std::map<std::string,bool> users = {
-    {"admin",true},
-    {"userFS",true},
-    {"userSS",true},
-    {"userBS",true},
-    {"user",true}
-};
-// users.insert("admin",true);
-
+// Set static members of this class.
 const std::string Login::CommandName = "login";
 const char Login::TransactionNumber = 1;
 
+/// Constructor method for Login, takes a session which is the current session in progress.
 Login::Login( Session* inSession )
 {
     userSession = inSession;
-    testes=2;
-}
-Login::Login()
-{
-    // userSession = inSession;
-    testes=2;
 }
 
+/// Stub constructor (must exist though)
+Login::Login()
+{}
+
+/// Stub deconstructor
 Login::~Login()
 {
 }
 
+/** Validates that the user input is a valid username. 
+ * @param user name
+ */
 bool isValidUsername( std::string name )
 {
-    return users[name];
+    if ( Session::AvailableUsers.find(name) == Session::AvailableUsers.end() )
+    {
+        // not found
+        return false;
+    }
+    return true;
 }
 
+/** Validates that the user input is a valid username. 
+ * @param user input
+ */
 bool Login::validateInput( std::string input )
 {
     if ( isValidUsername( input ) ) 
@@ -48,7 +51,6 @@ bool Login::validateInput( std::string input )
     else
     {
         return false;
-        
     }
 }
 

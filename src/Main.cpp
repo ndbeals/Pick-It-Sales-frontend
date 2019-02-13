@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <unistd.h>
+#include <map>
 
 #include "constants.h"
 
@@ -21,9 +23,16 @@
  \param  argv An argument vector of the command line arguments
  \return an integer 0 upon exit success
 */
-int main(int argc, char *argv[]) {
 
-	printf("Welcome to Pick-It Sales!\n");
+std::map<std::string,class User> Session::AvailableUsers;
+
+int main(int argc, char *argv[]) {
+	std::string fullPath(argv[0]); 
+	std::string path = fullPath.substr(0, fullPath.find_last_of("/"));
+
+	printf("Welcome to Pick-It Sales!\n" );
+
+	chdir(path.c_str());
 
 	// string readin = UserInput::GetStringInput();
 	// int num = UserInput::GetIntegerInput(-1000,100);
@@ -46,6 +55,7 @@ int main(int argc, char *argv[]) {
 
 	///*
 	Session currentSession;
+	Session::AvailableUsers = readUsersFile();
 	
 	while( true ){
 		currentSession = Session();

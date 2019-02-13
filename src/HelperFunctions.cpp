@@ -1,7 +1,13 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <string>
+#include <map>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 #include "constants.h"
+#include "user.h"
+#include "session.h"
 
 // void errorPrintf()
 
@@ -29,4 +35,38 @@ std::string trim(const std::string& str)
     }
     size_t last = str.find_last_not_of(' ');
     return str.substr(first, (last - first + 1));
+}
+
+
+std::map<std::string, class User> readUsersFile( )
+{
+    std::map<std::string, class User> availableUsers;
+    std::string line;
+    std::ifstream usersFile ("./CurrentUserAccounts.txt");
+
+    // printf("ok ... %i" , usersFile.is_open() );
+
+    // if ( usersFile.is_open() )
+    // {
+    // printf("trying to open: %s",USERS_ACCOUNT_FILE);
+        while( std::getline( usersFile , line ))
+        {
+            std::istringstream lineStream(line);
+            // printf("read line: %s\n",line);
+
+            std::string name;
+            std::string type;
+            float balance;
+
+            lineStream >> name >> type >> balance;
+
+            User aUser(name,type,balance);
+        
+            availableUsers.insert(std::pair<std::string,class User>(name,aUser));
+            // Session::AvailableUsers.insert(std::pair<std::string,class User>(name,aUser));
+        }
+        
+    // }
+
+    return availableUsers;
 }

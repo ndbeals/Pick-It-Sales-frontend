@@ -10,7 +10,6 @@
 class Transaction {
 private:
 
-
 public:
 	Transaction();
     ~Transaction();

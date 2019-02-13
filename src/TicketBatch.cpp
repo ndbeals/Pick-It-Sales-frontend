@@ -4,6 +4,7 @@
 #include <string>
 
 #include "ticketbatch.h"
+#include "user.h"
 
 TicketBatch::TicketBatch() {
 	this->price = 0;

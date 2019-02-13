@@ -1,5 +1,6 @@
 #include <string>
 
+#include "constants.h"
 #include "command.h"
 #include "commands/login.h"
 #include "commands/logout.h"
@@ -27,7 +28,7 @@ Command::~Command()
 
 bool Command::Process()
 {
-    printf("command process parent\n");
+    printf("%s%s", ERROR_PREFIX, "Not a valid command.\n");
     return false;
 }
 

@@ -3,7 +3,10 @@
 
 // #include <boost/assign/list_of.hpp>
 // #include <boost/unordered_map.hpp>
-#include <map>
+// #include <map>
+
+// FILE NAMES
+#define USERS_ACCOUNT_FILE "./CurrentUserAccounts.txt"
 
 // STRING CONSTANTS
 #define ERROR_PREFIX "ERROR: "

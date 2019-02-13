@@ -3,11 +3,13 @@
 #include <queue>
 #include <map>
 #include "transaction.h"
+#include "user.h"
 // #include "command.h"
 
 // forward declare the transaction class for use here.
-class Trans;
-class Command;
+// class Trans;
+// class Command;
+// class User;
 
 /**
  * \brief Session class manages the session state.
@@ -35,7 +37,7 @@ class Session
 	};
 
 	/// List of all the available users
-	std::map<std::string,Transaction> AvailableUsers;
+	static std::map<std::string, class User> AvailableUsers;
 
 private:
 	/// Store the session's state.
@@ -46,11 +48,13 @@ private:
 
 	/// Queue of all successful transactions.
 	std::queue< Transaction* > validTransactions;
+
+	/// Current logged in user
+	class User currentUser;
 public:
 	// Variable block
 
 	// Method block
-	/// cosntat
 	Session(/* args */);
 	~Session();
 
