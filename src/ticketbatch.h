@@ -23,9 +23,9 @@ public:
     
     /**
      * @param string eventTitle - title of event
-     * @param integer numberOfTicets - number of tickets the user is looking to purchase
+     * @param int numberOfTicets - number of tickets the user is looking to purchase
      * @param string sellerName - name of seller
-     * @retrn TicketBatch - matching object to criteria passed in the params or empty
+     * @return TicketBatch - matching object to criteria passed in the params or empty
      */ 
     TicketBatch find(std::string eventTitle, int numberOfTickets, std::string sellerName);
 
@@ -50,7 +50,7 @@ public:
     int getQuantityAvailable();
 
     /**
-     * @param integer; number of tickets available
+     * @param int quantityAvailable - number of tickets available
      */ 
     void setQuantityAvailable(int quantityAvailable);
 };
