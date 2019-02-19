@@ -23,7 +23,7 @@ void Transaction::LogOut( class User* user , char transactionNumber )
     // printf("logging out: %s\n",user->getUserName().c_str());
 
     // this->transactionString =  "00_" + user->getUserName();
-    this->transactionString =  fmt::format("{0:0>2} {1:<15} {2:2} {3:#09.2f}",0,user->getUserName(),user->getUserType(),user->getUserBalance());
+    this->transactionString = fmt::format("{0:02d} {1:<15} {2:2} {3:#09.2f}",transactionNumber,user->getUserName(),user->getUserType(),user->getUserBalance());
     // this->transactionString = fmt::format("{0} {1:<15}","00",user->getUserName());
     // printf("length: %d  %s\n",this->transactionString.length(),getTransactionString().c_str());
 
@@ -36,7 +36,7 @@ void Transaction::LogOut( class User* user , char transactionNumber )
  * @param int numberOfTickets -number of tickets to buy
 */
 void Transaction::buyTicket(User buyer, TicketBatch ticketBatch, int numberOfTickets) {
-    User seller = ticketBatch.getSeller();
+    User* seller = ticketBatch.getSeller();
     bool validAmount = numberOfTickets > 0 && 
     numberOfTickets <= MAX_TICKET_PURCHASE && 
     numberOfTickets <= ticketBatch.getQuantityAvailable();

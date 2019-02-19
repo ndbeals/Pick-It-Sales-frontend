@@ -53,17 +53,6 @@ namespace UserInput {
 	}
 
 	/**
-	 * GetCommandInput wraps GetStringInput and just prints a text prompt before asking for input
-	 * @return the user input as a string
-	 * @see GetStringInput
-	 */
-	std::string GetCommandInput()
-	{
-		printf(COMMAND_PROMPT_PREFIX);
-		return GetStringInput(0,25);
-	}
-
-	/**
 	 * Read an integer input from the command line, takes a max and min value
 	 * @param min Minimum value of the integer (default=0)
 	 * @param max Maximum value of the integer (default=10000)

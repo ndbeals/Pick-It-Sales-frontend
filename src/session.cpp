@@ -9,15 +9,18 @@
 #include "user.h"
 #include "transaction.h"
 #include "userinput.h"
+#include "ticketbatch.h"
 #include "session.h"
 #include "constants.h"
 #include "helperfunctions.h"
 #include "userinput.h"
 #include "command.h"
 #include "commands/login.h"
+#include "commands/logout.h"
 
 
 std::map<std::string,class User> Session::AvailableUsers;
+std::map<std::string,TicketBatch> Session::AvailableTickets;
 std::string Session::UserAccountFile;
 std::string Session::AvailableTicketsFile;
 std::string Session::DailyTransactionFile;
@@ -34,11 +37,16 @@ Session::~Session()
 {
 }
 
-/// Wrapper function for reading command inputs, also checks for eof on std::cin and exits if true.
-/// @see UserInput::GetCommandInput
+/**
+ * GetCommandInput wraps GetStringInput and just prints a text prompt before asking for input, also checks for eof on std::cin and exits if true.
+ * @return the user input as a string
+ * @see  UserInput::GetStringInput
+ */
 void Session::ReadCommandInput()
 {
-    this->userInput = UserInput::GetCommandInput();/// UserInput::GetStringInput(0 , 25);
+    printf(COMMAND_PROMPT_PREFIX);
+    
+    this->userInput = UserInput::GetStringInput(0,25);/// UserInput::GetStringInput(0 , 25);
     
     if ( this->userInput=="exit" || std::cin.eof() ){
         exit(0);
@@ -53,6 +61,7 @@ std::string Session::getLastUserInput()
 {
     return this->userInput;
 }
+
 
 /** Prompts user for a command (only accepts 'login'). 
  * 
@@ -82,7 +91,6 @@ void Session::WaitForLogin()
         {
             errorPrintf(LOGIN_FIRST_PROMPT);
         }
-        
     }
 }
 
@@ -106,6 +114,7 @@ void Session::ProcessMainEventLoop()
     
 }
 
+
 /// Log in the user, sets the state to logged in.
 bool Session::LogIn( class User* user )
 {
@@ -127,15 +136,46 @@ bool Session::LogOut()
     if ( isLoggedIn() ){
         Transaction* logout = new Transaction();
 
-        logout->LogOut( getCurrentUser() , 0 );
+        logout->LogOut( getCurrentUser() , Logout::TransactionNumber );
         AddTransaction( logout );
 
+        this->WriteTransactionFile();
+
+        // set session state to loggedout and the current user to null.
         this->setSessionState( SessionState::LoggedOut );
-        setCurrentUser( nullptr );
+        setCurrentUser( NULL );
+
         return true;
     }
     return false;
 }
+
+
+void Session::ReadTicketsFile()
+{
+    // std::map<std::string, class User> availableUsers;
+    std::string line;
+    std::ifstream usersFile ( AvailableTicketsFile );
+
+    if ( usersFile.is_open() )
+    {
+        while( std::getline( usersFile , line ))
+        {
+            // Don't add the last line of the file to the list
+            if ( trim(line) != END_OF_FILE_LINE )
+            {
+                TicketBatch batch(line);
+                
+                AvailableTickets.insert( std::pair<std::string,TicketBatch>(batch.getEventTitle() + batch.getSeller()->getUserName(),batch));
+            }
+        }
+    }
+    usersFile.close();
+
+    printf("tickets %d\n",AvailableTickets.size());
+    // return availableUsers;
+}
+
 
 
 /** Adds a new Transaction to the transaction queue (validTransactions).

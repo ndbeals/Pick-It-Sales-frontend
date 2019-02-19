@@ -33,7 +33,7 @@ Login::~Login()
  * @param user input.
  * @return Valid user name or not.
  */
-bool Login::validateInput( std::string input )
+bool Login::validateUserName( std::string input )
 {
     if ( Session::AvailableUsers.find(input) == Session::AvailableUsers.end() )
     {
@@ -64,16 +64,19 @@ bool Login::Process()
     bool success = false;
     while ( !success )
     {
+        // get user cli input
         std::string username = UserInput::GetStringInput( 0 , 15 );
 
-        if ( this->validateInput( username ) )
+        // validate the username is valid
+        if ( this->validateUserName( username ) )
         {
             User* login = &Session::AvailableUsers.find( username )->second;
+            success = getSession()->LogIn( login );
 
-            printf("Welcome, %s!\n" , login->getUserName().c_str() );
-
-            getSession()->LogIn( login);
-            return true;
+            if ( success ) 
+            {
+                printf("Welcome, %s!\n" , login->getUserName().c_str() );
+            }
         }
         else
         {

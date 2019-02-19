@@ -1,8 +1,10 @@
+#include <string>
 #include <iostream>
-#include <string>
+#include <sstream>
 #include <fstream>
-#include <string>
 
+#include "session.h"
+#include "helperfunctions.h"
 #include "user.h"
 #include "ticketbatch.h"
 
@@ -11,10 +13,19 @@ TicketBatch::TicketBatch() {
 	this->quantityAvailable = 0;
 }
 
-TicketBatch::TicketBatch(std::string eventTitle, double price, int quantityAvailable) {
+TicketBatch::TicketBatch(std::string eventTitle, float price, int quantityAvailable) {
 	this->eventTitle = eventTitle;
 	this->price = price;
 	this->quantityAvailable = quantityAvailable;
+}
+
+
+TicketBatch::TicketBatch(std::string fileLine) {
+	// Cut out and trim the spaces off the different fields in each line
+	this->eventTitle = trim( fileLine.substr(0,25) );
+	this->seller = &Session::AvailableUsers.find( trim( fileLine.substr(26,39) ) )->second;
+	this->quantityAvailable = std::stoi( trim( fileLine.substr(40,43) ) );
+	this->price				= std::stof( trim( fileLine.substr(44,50) ) );
 }
 
 /**
@@ -44,14 +55,14 @@ std::string TicketBatch::getEventTitle() {
 /**
  * @return User seller
  */ 
-User TicketBatch::getSeller() {
+// User TicketBatch::getSeller() {
 	// return this->seller;
-}
+// }
 
 /**
- * @return double price
+ * @return float price
  */ 
-double TicketBatch::getPrice(){
+float TicketBatch::getPrice(){
 	// return this->price;
 }
 

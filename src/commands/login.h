@@ -4,6 +4,8 @@
 #include "../command.h"
 #include "../session.h"
 
+class User;
+
 /** Login class is a child of the Command class.
  * 
  * Login implements functionality specific to loggin into the system, username checking, session state changing, etc
@@ -15,7 +17,7 @@ private:
      * @param user input.
      * @return Valid user name or not.
      */
-    bool validateInput( std::string );
+    bool validateUserName( std::string );
 
 public:
     /// string name of this command
@@ -41,8 +43,18 @@ public:
     /** Returns the command name of this command ('login').
      * @return Command name.
      */
-    std::string GetCommandName() { return CommandName; }
+    static const std::string getCommandName() { return CommandName; };
 
+    /** Returns the Transaction Number of this command
+     * @return Transaction number.
+     */
+    static const char getTransactionNumber() { return TransactionNumber; };
+
+
+    /** Returns the user that this command will log in
+     * @return Login in User
+     */
+    User* getLogInUser();
 };
 
 

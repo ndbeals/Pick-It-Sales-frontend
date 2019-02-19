@@ -97,7 +97,7 @@ int main(int argc, char *argv[]) {
 	// set the location of the user accounts file.
 	if ( argc > 1 ) {
 		Session::UserAccountFile = std::string( argv[1] );
-		printf("%s\n",argv[1]);
+		// printf("%s\n",argv[1]);
 	}
 
 	if ( argc > 2 ) {
@@ -154,6 +154,7 @@ int main(int argc, char *argv[]) {
 
 	Session currentSession;
 	Session::AvailableUsers = readUsersFile();
+	Session::ReadTicketsFile();
 	// Session::AvailableTicketsFile = "test";
 	
 	while( true ){
@@ -165,7 +166,7 @@ int main(int argc, char *argv[]) {
 		// once logged in, process the main event loop
 		currentSession.ProcessMainEventLoop();
 
-		currentSession.WriteTransactionFile();
+		// currentSession.WriteTransactionFile();
 
 		// currently, to exit, the user type "exit" and it'll call 'exit(0)'
 

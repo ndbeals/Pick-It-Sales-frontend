@@ -9,6 +9,8 @@
 // FILE NAMES
 #define USERS_ACCOUNT_FILE "./CurrentUserAccounts.txt"
 
+#define END_OF_FILE_LINE "END"
+
 // STRING CONSTANTS
 #define COMMAND_PROMPT_PREFIX "Enter a command: "
 #define ERROR_PREFIX "ERROR: "

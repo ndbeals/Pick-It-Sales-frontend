@@ -8,6 +8,7 @@
 // forward declarations
 class Transaction;
 class User;
+class TicketBatch;
 
 /**
  * \brief Session class manages the session state.
@@ -36,6 +37,8 @@ class Session
 
 	/// List of all the available users
 	static std::map<std::string, class User> AvailableUsers;
+
+	static std::map<std::string, TicketBatch> AvailableTickets;
 
 	/// Users file location (set by startup arg)
 	static std::string UserAccountFile;
@@ -68,13 +71,15 @@ public:
 	/// Stub deconstructor (must exist though)
 	~Session();
 
+	/** Reads the available tickets file.
+	 * 
+	 */
+	static void ReadTicketsFile();
+
 	/** Reads the available users file.
 	 * 
 	 */
-	void ReadUserFile()
-	{
-
-	}
+	void ReadUserFile();
 
 	/** Prompts user for a command (only accepts 'login'). 
 	 * 

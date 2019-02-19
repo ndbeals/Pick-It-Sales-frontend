@@ -14,12 +14,13 @@ class User ;
 class TicketBatch {
 private:
     std::string eventTitle; // title of event
-    // class User seller;   // user selling ticketbatch
-    double price;           // price of ticketbatch
+    User* seller;   // user selling ticketbatch
+    float price;           // price of ticketbatch
     int quantityAvailable;  // number of tickets available in a ticketbatch
 public:
 	TicketBatch();
-    TicketBatch(std::string eventTitle, double price, int quantityAvailable);
+    TicketBatch(std::string eventTitle, float price, int quantityAvailable);
+    TicketBatch(std::string fileLine );
     
     /**
      * @param string eventTitle - title of event
@@ -37,12 +38,12 @@ public:
     /**
      * @return User seller
      */ 
-    User getSeller();
+    User* getSeller() { return this->seller; };
 
     /**
-     * @return double price
+     * @return float price
      */ 
-    double getPrice();
+    float getPrice();
 
     /**
      * @return int quantity available
