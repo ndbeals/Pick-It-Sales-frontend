@@ -1,4 +1,6 @@
 #include <string>
+
+#include "session.h"
 #include "user.h"
 
 User::User(/* args */)
@@ -10,10 +12,27 @@ User::User(std::string userName , std::string userType , float balance)
     this->userType = userType;
 
     this->userBalance = balance;
-    printf("user constructed %s %s %f\n" ,this->userName.c_str(), this->userType.c_str() , this->userBalance);
 }
+
 
 User::~User()
 {
 }
 
+
+
+/** getLoggedInSessionState
+ * returns the session state that this user should be when logged in.
+ */
+Session::SessionState User::getLoggedInSessionState()
+{
+    if ( this->userType == "AA" ) {
+        return Session::SessionState::Admin;
+    }
+    else
+    {
+        return Session::SessionState::User;
+    }
+    
+    
+}

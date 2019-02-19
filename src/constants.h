@@ -10,8 +10,9 @@
 #define USERS_ACCOUNT_FILE "./CurrentUserAccounts.txt"
 
 // STRING CONSTANTS
-#define ERROR_PREFIX "ERROR: "
 #define COMMAND_PROMPT_PREFIX "Enter a command: "
+#define ERROR_PREFIX "ERROR: "
+#define ERROR_COMMAND "invalid command.\n"
 #define LOGIN_FIRST_PROMPT "You must login before executing that command.\n"
 #define LOGIN_TWICE_ERROR "You are already logged in!\n"
 

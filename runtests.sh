@@ -26,7 +26,7 @@ compare_output() {
     local testname="$3"
 
     # fix newlines in the output file.
-    sed -i -e 's/ERROR:/ERROR-/g; s/: /: \n/g; s/ERROR-/ERROR: /g' "$result"
+    sed -i -e 's/ERROR:/ERROR-/g; s/: /: \n/g; s/ERROR-/ERROR:/g' "$result"
 
     #compare them.
     results=$(diff --suppress-common-lines -y -Z -T -t "$expected" "$result")

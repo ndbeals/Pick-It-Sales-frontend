@@ -1,6 +1,7 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
+#include <mutex>
 #include "session.h"
 
 /** Command is the parent class for all commands (parent to Login, Logout, etc).
@@ -14,7 +15,6 @@ private:
     static const std::string CommandName;
     /// string number of this command's transaction
     static const char TransactionNumber;
-
 protected:
 
     Session* userSession;

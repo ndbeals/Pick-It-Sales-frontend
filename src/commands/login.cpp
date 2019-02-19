@@ -5,7 +5,9 @@
 #include "../helperfunctions.h"
 #include "../userinput.h"
 #include "../command.h"
+#include "../session.h"
 #include "login.h"
+#include "../user.h"
 
 // Set static members of this class.
 const std::string Login::CommandName = "login";
@@ -66,9 +68,11 @@ bool Login::Process()
 
         if ( this->validateInput( username ) )
         {
-            printf("Welcome, %s!\n" , username.c_str() );
+            User* login = &Session::AvailableUsers.find( username )->second;
 
-            getSession()->LogIn();
+            printf("Welcome, %s!\n" , login->getUserName().c_str() );
+
+            getSession()->LogIn( login);
             return true;
         }
         else

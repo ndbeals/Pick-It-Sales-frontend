@@ -5,16 +5,16 @@
 #include <string>
 #include <vector>
 
-#include "user.h"
 
 // #include <user.h>
 
-// class User {};
+class User ;
+// #include "user.h"
 
 class TicketBatch {
 private:
     std::string eventTitle; // title of event
-    User seller;            // user selling ticketbatch
+    // class User seller;   // user selling ticketbatch
     double price;           // price of ticketbatch
     int quantityAvailable;  // number of tickets available in a ticketbatch
 public:

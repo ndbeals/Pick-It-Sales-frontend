@@ -3,8 +3,8 @@
 #include <fstream>
 #include <string>
 
-#include "ticketbatch.h"
 #include "user.h"
+#include "ticketbatch.h"
 
 TicketBatch::TicketBatch() {
 	this->price = 0;

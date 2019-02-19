@@ -6,11 +6,28 @@
 #include <algorithm>
 #include <cstdio>
 
+#include "user.h"
 #include "constants.h"
 #include "helperfunctions.h"
 #include "ticketbatch.h"
 #include "transaction.h"
 #include "userinput.h"
+
+#include "format.cc"
+#include "fmt/format.h"
+
+
+
+void Transaction::LogOut( class User* user , char transactionNumber )
+{
+    // printf("logging out: %s\n",user->getUserName().c_str());
+
+    // this->transactionString =  "00_" + user->getUserName();
+    this->transactionString =  fmt::format("{0:0>2} {1:<15} {2:2} {3:#09.2f}",0,user->getUserName(),user->getUserType(),user->getUserBalance());
+    // this->transactionString = fmt::format("{0} {1:<15}","00",user->getUserName());
+    // printf("length: %d  %s\n",this->transactionString.length(),getTransactionString().c_str());
+
+}
 
 
 /** Process the user buy a ticket.
@@ -27,7 +44,7 @@ void Transaction::buyTicket(User buyer, TicketBatch ticketBatch, int numberOfTic
     // check if number of tickets the user wishes to purchase is less than or equal to the number available
     if (validAmount) {
         // if valid quantity check if buyer has enough credit
-        double totalTicketCost = ticketBatch.getPrice() * numberOfTickets;s
+        double totalTicketCost = ticketBatch.getPrice() * numberOfTickets;
 
         // write to transaction log
     } else {
@@ -43,7 +60,7 @@ void Transaction::buyTicket(User buyer, TicketBatch ticketBatch, int numberOfTic
 /**
  * Process refund of ticket(s)
  */ 
-void Transaction::refund(User buyer, User seller, double amount) {
+void Transaction::refund(class User buyer, User seller, double amount) {
     // check if amount to refund is greater than $0.00
     if (amount > 0) {
         // add amount to buyer account

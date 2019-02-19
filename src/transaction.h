@@ -5,14 +5,20 @@
 #include <vector>
 
 #include "ticketbatch.h"
-#include "user.h"
+// #include "user.h"
+class User;
 
 class Transaction {
 private:
-
+    std::string transactionString;
 public:
 	Transaction();
     ~Transaction();
+
+    /** LogOut
+     * Logs the user out, creates an end of session transaction
+     */
+    void LogOut( User* , char);
 
     /**
      * @param User user - user account to add credit to
@@ -44,6 +50,10 @@ public:
      * 
     */
     void sell(/* args */);
+
+    /// TransactionString
+    std::string getTransactionString() { return this->transactionString; };
+    void setTransactionString( std::string newString ) { this->transactionString = newString; };
 };
 
 #endif

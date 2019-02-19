@@ -2,9 +2,12 @@
 #define SESSION_H
 #include <queue>
 #include <map>
-#include "transaction.h"
-#include "user.h"
+// #include "user.h"
+// #include "transaction.h"
 
+// forward declarations
+class Transaction;
+class User;
 
 /**
  * \brief Session class manages the session state.
@@ -34,6 +37,15 @@ class Session
 	/// List of all the available users
 	static std::map<std::string, class User> AvailableUsers;
 
+	/// Users file location (set by startup arg)
+	static std::string UserAccountFile;
+
+	/// Available tickets file location (set by startup arg)
+	static std::string AvailableTicketsFile;
+
+	/// Daily transaction file
+	static std::string DailyTransactionFile;
+	
 private:
 	/// Store the session's state.
 	SessionState sessionState;
@@ -45,7 +57,7 @@ private:
 	std::queue< Transaction* > validTransactions;
 
 	/// Current logged in user
-	class User currentUser;
+	class User* currentUser;
 public:
 	// Variable block
 
@@ -55,6 +67,14 @@ public:
 	Session(/* args */);
 	/// Stub deconstructor (must exist though)
 	~Session();
+
+	/** Reads the available users file.
+	 * 
+	 */
+	void ReadUserFile()
+	{
+
+	}
 
 	/** Prompts user for a command (only accepts 'login'). 
 	 * 
@@ -88,10 +108,18 @@ public:
 	 */
 	std::string getLastUserInput();
 
+
+	/** Adds a new Transaction to the transaction queue (validTransactions).
+	 * @param Transaction to store
+	 */
+	void AddTransaction( Transaction* );
+
+	void WriteTransactionFile();
+
 	/// Check if user is logged in at all.
 	bool isLoggedIn() { return (getSessionState() == SessionState::User || getSessionState() == SessionState::Admin); }
 	/// Log in the user, sets the state to logged in.
-	bool LogIn();
+	bool LogIn( class User* user );
 	
 	/// Check if the user has logged out. 
 	bool isLoggedOut() { return (getSessionState() == SessionState::LoggedOut || getSessionState() == SessionState::New); }
@@ -103,10 +131,9 @@ public:
 	/// Checks if the state is active (logged in or newly created).
 	bool isActive(){ return (isLoggedIn() || getSessionState() == SessionState::New); }
 
-	/** Adds a new Transaction to the transaction queue (validTransactions).
-	 * @param Transaction to store
-	 */
-	void AddTransaction( Transaction* );
+	/// Current user
+	class User* getCurrentUser() { return this->currentUser; };
+	void setCurrentUser( class User* newUser ) { this->currentUser = newUser; };
 };
 
 

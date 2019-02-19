@@ -1,5 +1,7 @@
 #include <string>
+#include <mutex>
 
+#include "helperfunctions.h"
 #include "constants.h"
 #include "command.h"
 #include "commands/login.h"
@@ -28,7 +30,8 @@ Command::~Command()
  */
 bool Command::Process()
 {
-    printf("%s%s", ERROR_PREFIX, "Not a valid command.\n");
+    // printf("%s%s", ERROR_PREFIX, "Not a valid command.\n");
+    errorPrintf(ERROR_COMMAND);
     return false;
 }
 
