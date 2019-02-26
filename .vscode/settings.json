@@ -34,7 +34,13 @@
         "tuple": "cpp",
         "utility": "cpp",
         "queue": "cpp",
-        "deque": "cpp"
+        "deque": "cpp",
+        "chrono": "cpp",
+        "codecvt": "cpp",
+        "ctime": "cpp",
+        "filesystem": "cpp",
+        "ratio": "cpp",
+        "mutex": "cpp"
     },
     "files.eol": "\n",
     "python.linting.pylintEnabled": true,

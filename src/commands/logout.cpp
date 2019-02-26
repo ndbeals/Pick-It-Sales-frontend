@@ -5,32 +5,35 @@
 #include "logout.h"
 #include "../session.h"
 
+// Set static members of this class.
 const std::string Logout::CommandName = "logout";
 const char Logout::TransactionNumber = 0; // 00;
 
+/// Constructor method for Logout, takes a session which is the current session in progress.
+/// @param Current, in progress session.
 Logout::Logout( Session* inSession)
 {
     userSession = inSession;
-    printf("logout constructor\n");
-}
-Logout::Logout()
-{
-    printf("logout constructor\n");
 }
 
+/// Stub constructor (must exist though)
+Logout::Logout()
+{}
+
+/// Stub deconstructor (must exist though)
 Logout::~Logout()
 {
 }
 
+/** Processes the logout command.
+ * 
+ * Changes the session state to ended and terminates session.
+ * @return Logout success.
+ */
 bool Logout::Process()
 {
-    // if ( userSession->isLoggedIn() )
-    // {
-    getSession()->LogOut();
-
+    bool success = getSession()->LogOut();
     printf("Logged out!\n");
-    // }
-    
-    printf("logout process\n");
-    testes=1;
+
+    return success;   
 }

@@ -1,49 +1,46 @@
 #include <string>
+#include <mutex>
 
+#include "helperfunctions.h"
+#include "constants.h"
 #include "command.h"
 #include "commands/login.h"
 #include "commands/logout.h"
 #include "session.h"
 
+/// Stub constructor (must exist though)
 Command::Command(  )
-{
-    // userSession = &inSession;
-    // this->CommandName =
-    // printf("parent constructor\n");
-    testes=-1;
-}
+{}
 
+/// Constructor method for Command, takes a session which is the current session in progress.
+/// @param Current, in progress session.
 Command::Command( Session* inSession )
 {
     userSession = inSession;
-
-    // printf("parent constructor\n");
-    testes=-1;
 }
 
+/// Stub deconstructor (must exist though)
 Command::~Command()
-{
-}
+{}
 
+/** Processes the command
+ * 
+ * this is the function declaration that'll be overwritten by each child to implement their specific functionality.
+ * @return Login success.
+ */
 bool Command::Process()
 {
-    printf("command process parent\n");
+    // printf("%s%s", ERROR_PREFIX, "Not a valid command.\n");
+    errorPrintf(ERROR_COMMAND);
     return false;
 }
 
-// int Command::gettest()
-// {
-//     return 0;
-// }
-
+/** Factory function to create commands.
+ * @return New Command.
+ */
 Command* Command::GetCommandNameFromInput( std::string commandName , Session* session )
 {
     Command *instance;
-
-    printf("com num: %d\n",session->num);
-    session->num = 2;
-    printf("com num: %d\n",session->num);
-
 
     if ( commandName == "login" )
     {
@@ -58,11 +55,5 @@ Command* Command::GetCommandNameFromInput( std::string commandName , Session* se
         instance = new Command( session );
     }
 
-
-    // printf("val: %d\n",instance->val);
-    // (*instance).val = 5;
-
-    // printf("in class: %p\n" , (void *)instance);
-    // printf("in class: %p\n" , (void *)*&instance);
     return instance;
 }
