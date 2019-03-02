@@ -172,7 +172,7 @@ void Session::ReadTicketsFile()
     }
     usersFile.close();
 
-    printf("tickets %d\n",AvailableTickets.size());
+    // printf("tickets %d\n",AvailableTickets.size());
     // return availableUsers;
 }
 

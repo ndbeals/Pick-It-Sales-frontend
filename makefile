@@ -33,6 +33,8 @@ rebuild: cleaner resources build
 
 build: $(TARGET)
 
+run: build
+	@./runtests.sh
 
 #Remake
 remake: cleaner all

@@ -127,7 +127,7 @@ int main(int argc, char *argv[]) {
 
 
 	// Parse the following two arguments (they are the file paths, local to the binary)
-	std::string userFileLocation = "./AvailableTickets.txt"; //argv[1];
+	// std::string userFileLocation = "./AvailableTickets.txt"; //argv[1];
 
 	// std::string test("./AvailableTickets.txt");
 
@@ -150,7 +150,7 @@ int main(int argc, char *argv[]) {
 
 
 	// hello world!
-	printf("Welcome to Pick-It Sales!\n" );
+	printf("Welcome to Pick-It Sales!\n" ); //\n\nfullpath: %s\n",getFullPath( Session::UserAccountFile).c_str()
 
 	Session currentSession;
 	Session::AvailableUsers = readUsersFile();

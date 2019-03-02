@@ -1,8 +1,14 @@
 ./src/main
 ./main
 
+inc/*
+
+*.zip
+*.trn
 tests/results/**/
 html/*
+
+loginout
 
 # Prerequisites
 *.d

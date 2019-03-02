@@ -6,6 +6,7 @@ cd "$BASE" || exit  #cd to script base dir
 
 # Declare global variables
 BIN="./bin/pick-it-sales"
+RES="./bin/CurrentUserAccounts.txt ./bin/AvailableTickets.txt"
 TESTDIR="./tests"
 CASES="$TESTDIR/cases"
 RESULTS="$TESTDIR/results"
@@ -68,7 +69,7 @@ run_test_case() {
     # Add a new line to the end of the test file
     # then pipe the newly edited file into the program
     # capture the output and redirect it to the results directory
-    (sed -e '$a\' "$filepath" | "$BIN") > "$RESULTDIR/$CASENAME/$filename.output"
+    (sed -e '$a\' "$filepath" | "$BIN" $RES test.trn) > "$RESULTDIR/$CASENAME/$filename.output"
 
     # After having executed the test, run the compare function
     compare_output "$testdir/$filename.termout" "$RESULTDIR/$CASENAME/$filename.output" "$filename"

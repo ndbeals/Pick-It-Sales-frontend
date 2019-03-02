@@ -100,7 +100,7 @@ std::map<std::string, class User> readUsersFile()
 {
     std::map<std::string, class User> availableUsers;
     std::string line;
-    std::ifstream usersFile (Session::UserAccountFile);
+    std::ifstream usersFile ( getFullPath( Session::UserAccountFile) );
 
     if ( usersFile.is_open() )
     {
