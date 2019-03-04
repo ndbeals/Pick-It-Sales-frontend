@@ -34,7 +34,7 @@ public:
     /** Processes the command
      * 
      * this is the function declaration that'll be overwritten by each child to implement their specific functionality.
-     * @return Login success.
+     * @return bool - whether or not the Login was successful.
      */
     virtual bool Process();
 
@@ -56,6 +56,8 @@ public:
     const char GetTransactionNumber() { return TransactionNumber; }
 
     /** Factory function to create commands.
+     * @param string commandName - name of command
+     * @param Session* session - current session
      * @return New Command.
      */
     static Command* GetCommandNameFromInput( std::string , Session* );

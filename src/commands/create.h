@@ -58,7 +58,7 @@ public:
     /** Processes the create command.
      * 
      * this entails asking the user for a username to create as, validating that, and then returning whether the create was successful. 
-     * @return Create success.
+     * @return bool - create was successful or not
      */
     bool Process();
 

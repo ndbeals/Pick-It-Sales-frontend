@@ -34,8 +34,8 @@ Create::~Create()
 
 
 /** Checks if the given name is a name that's already being used.
- * @param user input.
- * @return Valid user name or not.
+ * @param string input - user input.
+ * @return bool - Valid user name or not.
  */
 bool Create::checkUserName( std::string input )
 {
@@ -83,7 +83,7 @@ bool Create::checkCreditAmount( float input )
 /** Processes the create command.
  * 
  * this entails asking the user for a username to create as, validating that, and then returning whether the create was successful. 
- * @return Create success.
+ * @return bool - create was successful or not
  */
 bool Create::Process()
 {
