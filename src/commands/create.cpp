@@ -43,6 +43,10 @@ bool Create::checkUserName( std::string input )
     return false;
 }
 
+/** Checks if the given type is a valid user type
+ * @param string type - user type
+ * @return bool - Valid user type or not.
+ */
 bool Create::checkUserType( std::string type )
 {
     if ( type=="AA" || type=="FS" || type=="BS" || type=="SS" ) {
@@ -51,11 +55,21 @@ bool Create::checkUserType( std::string type )
     return false;
 }
 
+/** Checks if the given name is of valid length defined by 
+ * MIN_USERNAME_LENGTH and MAX_USERNAME_LENGTH inclusive
+ * @param string input - user input
+ * @return bool - Valid user length or not.
+ */
 bool Create::checkNameLength( std::string input )
 {
     return (input.length() >= MIN_USERNAME_LENGTH && input.length() <= MAX_USERNAME_LENGTH);
 }
 
+/** Checks if the given credit amount is a valid amount
+ * defined by MIN_CREDIT and MAX_CREDIT inclusive
+ * @param string input - user input
+ * @return bool - Valid user length or not.
+ */
 bool Create::checkCreditAmount( float input )
 {
     return inRange( input , MIN_CREDIT , MAX_CREDIT );

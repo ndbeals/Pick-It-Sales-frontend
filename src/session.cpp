@@ -150,7 +150,8 @@ bool Session::LogOut()
     return false;
 }
 
-
+/** Read in ticket file to session
+ */ 
 void Session::ReadTicketsFile()
 {
     // std::map<std::string, class User> availableUsers;
@@ -186,6 +187,8 @@ void Session::AddTransaction( Transaction* validTransaction )
     validTransactions.push( validTransaction );
 }
 
+/** Process writing trasactions to log file
+ */ 
 void Session::WriteTransactionFile()
 {
     // printf("writing transactions\n");
