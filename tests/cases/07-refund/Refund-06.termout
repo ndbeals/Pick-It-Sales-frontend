@@ -1,0 +1,10 @@
+Welcome to Pick-It Sales!
+Enter a command: 
+Enter a username: 
+Welcome, admin!
+Enter a command: 
+Enter the buyer's username: 
+Enter the seller's username: 
+Enter the amount to refund: 
+ERROR: The seller does not have a sufficent balance to refund the given amount.
+Enter the amount to refund: 
