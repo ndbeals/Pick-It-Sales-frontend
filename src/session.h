@@ -81,6 +81,7 @@ public:
 	 */
 	void ReadUserFile();
 
+
 	/** Prompts user for a command (only accepts 'login'). 
 	 * 
 	 * processes that login command, changes the state upon login, then returns control.

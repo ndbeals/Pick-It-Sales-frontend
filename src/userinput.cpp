@@ -57,7 +57,7 @@ namespace UserInput {
 	 * @param min Minimum value of the integer (default=0)
 	 * @param max Maximum value of the integer (default=10000)
 	 */
-	int GetIntegerInput( int min , int max )
+	int GetIntegerInput( int min , int max , std::string tooLowError, std::string tooHighError )
 	{
 		// declare used variables.
 		bool validInput = false;
@@ -76,9 +76,15 @@ namespace UserInput {
 				inputNum = std::stoi( input , &charCount );
 
 				// check if input stream is PURELY a number
-				if ( (input.length() == (uint)charCount ) && (inputNum >= min && inputNum <= max) ) {
+				if ( (input.length() == (uint)charCount ) ) {
 					// If it didn't error, set validInput to true:
 					validInput = true;
+					if (inputNum < min) {
+						errorPrintf( tooLowError.c_str() );
+					}
+					if (inputNum > max) {
+						errorPrintf( tooHighError.c_str() );
+					}
 				}
 				else {
 					// otherwise, error and restart
@@ -131,9 +137,6 @@ namespace UserInput {
 					if (inputNum > max) {
 						errorPrintf( tooHighError.c_str() );
 					}
-					
-
-					
 				}
 				else {
 					// otherwise, error and restart

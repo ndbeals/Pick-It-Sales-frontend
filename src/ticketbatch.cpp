@@ -35,9 +35,9 @@ TicketBatch::TicketBatch(std::string eventTitle, float price, int quantityAvaila
 TicketBatch::TicketBatch(std::string fileLine) {
 	// Cut out and trim the spaces off the different fields in each line
 	this->eventTitle = trim( fileLine.substr(0,25) );
-	this->seller = &Session::AvailableUsers.find( trim( fileLine.substr(26,39) ) )->second;
-	this->quantityAvailable = std::stoi( trim( fileLine.substr(40,43) ) );
-	this->price				= std::stof( trim( fileLine.substr(44,50) ) );
+	this->seller = &Session::AvailableUsers.find( trim( fileLine.substr(26,15) ) )->second;
+	this->quantityAvailable = std::stoi( trim( fileLine.substr(40,3) ) );
+	this->price				= std::stof( trim( fileLine.substr(44,6) ) );
 }
 
 /** Finds matching ticket object based on search parameters

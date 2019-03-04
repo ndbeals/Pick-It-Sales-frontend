@@ -13,7 +13,9 @@
 
 // STRING CONSTANTS
 #define COMMAND_PROMPT_PREFIX "Enter a command: "
-#define COMMAND_NOT_PERMITTED "You are not permitted to access this.\n"
+#define COMMAND_NOT_PERMITTED_ADMIN "You are not permitted to access this.\n"
+// #define COMMAND_NOT_PERMITTED_BUY "You Buy-Standard users are not allowed to .\n"
+
 #define ERROR_PREFIX "ERROR: "
 #define ERROR_COMMAND "invalid command.\n"
 #define LOGIN_FIRST_PROMPT "You must login before executing that command.\n"
@@ -28,17 +30,35 @@
 #define CREATE_ERROR_CREDITS_LOW "Credit amounts must be 0 or greater.\n"
 #define CREATE_ERROR_CREDITS_HIGH "Credit amounts must be 999,999.99 or lower.\n"
 
+//Sell Prompts
+#define SELL_PROMPT_EVENT_TILE "Enter an Event Title: "
+#define SELL_PROMPT_SALE_PRICE "Enter a Sale Price: "
+#define SELL_PROMPT_NUMBER_TICKETS "# of Tickets to sell: "
+#define SELL_PROMPT_SUCCESS "Successfully created a sale order.\n"
+#define SELL_ERROR_WRONG_ACCOUNT "Your account type may not sell tickets.\n"
+#define SELL_ERROR_EVENT_TOO_LONG "Event Title too long.\n"
+#define SELL_ERROR_EVENT_TOO_SHORT "Empty string not valid as Event Title.\n"
+#define SELL_ERROR_PRICE_TOO_HIGH "Price must be below $1000.\n"
+#define SELL_ERROR_PRICE_TOO_LOW "Price must be above $0.\n"
+#define SELL_ERROR_MAX_TICKETS "# of tickets to sell must be 100 or less.\n"
+#define SELL_ERROR_MIN_TICKETS "You cannot sell less than 1 ticket.\n"
+
 // MIN & MAX VALUES
 #define MAX_ADD_CREDIT 1000
-#define MAX_CREDIT 999999.99
-#define MIN_CREDIT 0
+#define MAX_CREDIT 999999.99f
+#define MIN_CREDIT 0.0f
 #define MAX_EVENT_TITLE_LENGTH 25
-#define MAX_TICKET_PRICE 999.99
+#define MAX_TICKET_PRICE 999.99f
+#define MIN_TICKET_PRICE 0.01f
 #define MAX_TICKET_PURCHASE 4
 #define MAX_TICKETS_FOR_SALE 100
+#define MIN_TICKETS_FOR_SALE 0
 
 #define MAX_USERNAME_LENGTH 15
 #define MIN_USERNAME_LENGTH 1
+
+#define MAX_EVENTTITLE_LENGTH 25
+#define MIN_EVENTTITLE_LENGTH 1
 
 // TRANSACTION TYPES
 enum TRANSACTION {

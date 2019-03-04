@@ -156,22 +156,21 @@ void Session::ReadTicketsFile()
 {
     // std::map<std::string, class User> availableUsers;
     std::string line;
-    std::ifstream usersFile ( AvailableTicketsFile );
+    std::ifstream ticketsFile ( AvailableTicketsFile );
 
-    if ( usersFile.is_open() )
+    if ( ticketsFile.is_open() )
     {
-        while( std::getline( usersFile , line ))
+        while( std::getline( ticketsFile , line ))
         {
             // Don't add the last line of the file to the list
             if ( trim(line) != END_OF_FILE_LINE )
             {
                 TicketBatch batch(line);
-                
                 AvailableTickets.insert( std::pair<std::string,TicketBatch>(batch.getEventTitle() + batch.getSeller()->getUserName(),batch));
             }
         }
     }
-    usersFile.close();
+    ticketsFile.close();
 
     // printf("tickets %d\n",AvailableTickets.size());
     // return availableUsers;

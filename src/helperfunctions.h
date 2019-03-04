@@ -11,6 +11,7 @@
 void errorPrintf(const char* fmt, ...);
 
 bool inRange( float input , float min , float max );
+bool inRange( int input , int min , int max );
 
 /** Trim leading and trailing spaces from a string.
  * @param String to trim.

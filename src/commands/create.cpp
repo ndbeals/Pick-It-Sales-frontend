@@ -44,6 +44,16 @@ bool Create::checkUserName( std::string input )
     return false;
 }
 
+/** Checks if the given name is of valid length defined by 
+ * MIN_USERNAME_LENGTH and MAX_USERNAME_LENGTH inclusive
+ * @param string input - user input
+ * @return bool - Valid user length or not.
+ */
+bool Create::checkNameLength( std::string input )
+{
+    return (input.length() >= MIN_USERNAME_LENGTH && input.length() <= MAX_USERNAME_LENGTH);
+}
+
 /** Checks if the given type is a valid user type
  * @param string type - user type
  * @return bool - Valid user type or not.
@@ -54,16 +64,6 @@ bool Create::checkUserType( std::string type )
         return true;
     }
     return false;
-}
-
-/** Checks if the given name is of valid length defined by 
- * MIN_USERNAME_LENGTH and MAX_USERNAME_LENGTH inclusive
- * @param string input - user input
- * @return bool - Valid user length or not.
- */
-bool Create::checkNameLength( std::string input )
-{
-    return (input.length() >= MIN_USERNAME_LENGTH && input.length() <= MAX_USERNAME_LENGTH);
 }
 
 /** Checks if the given credit amount is a valid amount
@@ -87,19 +87,9 @@ bool Create::Process()
     // Check if the user is an admin, if not, exit.
     if ( !getSession()->isAdmin() )
     {
-        errorPrintf(COMMAND_NOT_PERMITTED);
+        errorPrintf(COMMAND_NOT_PERMITTED_ADMIN);
         return false;
     }
-
-
-
-    // check if already logged in, if so, print the associated error and return
-    // if ( getSession()->isLoggedIn() )
-    // {
-        // errorPrintf(LOGIN_TWICE_ERROR);
-        // return true;
-    // }
-
 
     // Loop continuously until we get a valid input.    
     bool nameSuccess = false;
@@ -109,7 +99,6 @@ bool Create::Process()
         
         // get user cli input
         std::string newUsername = UserInput::GetStringInput( MIN_USERNAME_LENGTH , MAX_USERNAME_LENGTH , "Username length must be 15 characters or less.\n" , "Username cannot be empty.\n");
-        // printf("Welcome, %s!  l: %d\n" , newUsername.c_str() ,newUsername.length());
 
         // validate the username is valid to use
         if ( checkUserName( newUsername ) && checkNameLength( newUsername ) )
@@ -145,20 +134,10 @@ bool Create::Process()
                     errorPrintf(CREATE_ERROR_INVALID_TYPE);
                 }
             }
-            
-
-            // User* create = &Session::AvailableUsers.find( newUsername )->second;
-            // nameSuccess = getSession()->LogIn( create );
-
-            // if ( nameSuccess ) 
-            // {
-                // printf("Welcome, %s!\n" , create->getUserName().c_str() );
-            // }
         }
         else if ( ! checkUserName( newUsername ) )
         {
             errorPrintf(CREATE_ERROR_NAME_TAKEN);
-            // printf("Invalid username, try again: ");
         }
     }
 
