@@ -26,9 +26,10 @@ std::string Session::AvailableTicketsFile;
 std::string Session::DailyTransactionFile;
 
 
-/// Session constructor
-///  set state to logged out by default
-Session::Session(/* args */)
+/** Session default constructor
+ * default state to logged out
+ */
+Session::Session()
 {
     this->sessionState = SessionState::New;
 }
@@ -115,7 +116,10 @@ void Session::ProcessMainEventLoop()
 }
 
 
-/// Log in the user, sets the state to logged in.
+/** Log in the user, sets the state to logged in.
+ * @param User* user - user logging in
+ * @return bool - if change of the session state for the user logging in was successful or not
+ */
 bool Session::LogIn( class User* user )
 {
     // printf("active? %d\n",isActive());
@@ -130,7 +134,10 @@ bool Session::LogIn( class User* user )
     return false;
 }
 
-/// Log the user out, sets the state to logged out.
+/** Log the user out, sets the state to logged out.
+ * @param User* user - user logging in
+ * @return bool - if change of the session state to logged out was successful or not
+ */
 bool Session::LogOut()
 {
     if ( isLoggedIn() ){
@@ -180,7 +187,7 @@ void Session::ReadTicketsFile()
 
 
 /** Adds a new Transaction to the transaction queue (validTransactions).
- * @param Transaction to store
+ * @param Transaction* validTransaction - validated Transaction object to store
  */
 void Session::AddTransaction( Transaction* validTransaction )
 {

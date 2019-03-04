@@ -10,6 +10,11 @@
  */
 void errorPrintf(const char* fmt, ...);
 
+/** A function to check if a given numeric input is in the given range
+ * @param float input - user input
+ * @param float min - minimum value
+ * @param float max - maxium value
+ */
 bool inRange( float input , float min , float max );
 
 /** Trim leading and trailing spaces from a string.

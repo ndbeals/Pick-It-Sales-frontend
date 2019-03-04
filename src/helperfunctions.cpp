@@ -37,6 +37,11 @@ void errorPrintf(const char* fmt, ...)
     va_end(args);
 }
 
+/** A function to check if a given numeric input is in the given range
+ * @param float input - user input
+ * @param float min - minimum value
+ * @param float max - maxium value
+ */
 bool inRange( float input , float min , float max )
 {
     return ( input >= min && input <= max );

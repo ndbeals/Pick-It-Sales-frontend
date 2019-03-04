@@ -21,8 +21,9 @@ protected:
 
 public:
     // Method block
-    /// Constructor method for Command, takes a session which is the current session in progress.
-    /// @param Current, in progress session.
+    /** Constructor method for Command, takes a session which is the current session in progress.
+     * @param Session* inSession - in progress session.
+     */
     Command( Session* );
     /// Stub constructor (must exist though)
     Command(  );
