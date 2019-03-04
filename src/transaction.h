@@ -25,7 +25,7 @@ public:
      */
     void Create( User* , char );
 
-    /**
+    /** Process adding credit to user account
      * @param User user - user account to add credit to
      * @param double creditToAdd - the amount of credit to add
     */
@@ -38,21 +38,20 @@ public:
     */
     void buyTicket(User buyer, TicketBatch ticketBatch, int numberOfTickets);
 
-    /**
+    /** Process refund of a ticket
      * @param User buyer - user to refund credit to
      * @param User seller - user to refund credit from
      * @param double creditAmount - credit transfered between buyer and seller
     */
     void refund(User buyer, User seller, double creditAmount);
 
-    /**
+    /** Process removal of credit from a user account
      * @param User user - user account to remove credit from
      * @param double creditToSubtract - the amount of credit to remove
     */
     void removeCredit(User user, double creditToSubtract);
 
-    /**
-     * 
+    /** Procces the sale of the ticket
     */
     void sell(/* args */);
 

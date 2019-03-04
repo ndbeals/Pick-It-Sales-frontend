@@ -5,9 +5,6 @@
 #include <string>
 #include <vector>
 
-
-// #include <user.h>
-
 class User ;
 // #include "user.h"
 
@@ -23,6 +20,7 @@ public:
     TicketBatch(std::string fileLine );
     
     /**
+     * Find matching ticket object(s) based on search parameters
      * @param string eventTitle - title of event
      * @param int numberOfTicets - number of tickets the user is looking to purchase
      * @param string sellerName - name of seller
@@ -31,26 +29,27 @@ public:
     TicketBatch find(std::string eventTitle, int numberOfTickets, std::string sellerName);
 
     /**
+     * Returns event title of ticket
      * @return string event title
      */ 
     std::string getEventTitle();
 
-    /**
+    /** Get seller user object
      * @return User seller
      */ 
     User* getSeller() { return this->seller; };
 
-    /**
+    /** Returns ticket price
      * @return float price
      */ 
     float getPrice();
 
-    /**
+    /** Returns quantity of tickets available
      * @return int quantity available
      */ 
     int getQuantityAvailable();
 
-    /**
+    /** Sets value for quantity of tickets available
      * @param int quantityAvailable - number of tickets available
      */ 
     void setQuantityAvailable(int quantityAvailable);
