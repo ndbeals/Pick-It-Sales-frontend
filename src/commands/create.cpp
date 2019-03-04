@@ -14,7 +14,10 @@
 const std::string Create::CommandName = "create";
 const char Create::TransactionNumber = 1;
 
-/// Constructor method for Create, takes a session which is the current session in progress.
+/** Constructor method for Create
+ * takes a session which is the current session in progress.
+ * @param Session* inSession - in progress session.
+ */ 
 Create::Create( Session* inSession )
 {
     userSession = inSession;

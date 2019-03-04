@@ -19,8 +19,9 @@ public:
     static const char TransactionNumber;
 
     // Method Block
-    /// Constructor method for Logout, takes a session which is the current session in progress.
-    /// @param Current, in progress session.
+    /** Constructor method for Logout, takes a session which is the current session in progress.
+     * @param Session* inSession - in progress session.
+     */ 
     Logout( Session* );
     /// Stub constructor (must exist though)
     Logout();

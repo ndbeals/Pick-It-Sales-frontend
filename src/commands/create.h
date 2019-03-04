@@ -45,8 +45,10 @@ public:
     /// string number of this command's transaction
     static const char TransactionNumber;
 
-    /// Constructor method for Create, takes a session which is the current session in progress.
-    /// @param Current, in progress session.
+    /** Constructor method for Create
+     * takes a session which is the current session in progress.
+     * @param Session* inSession - in progress session.
+     */ 
     Create( Session* );
     /// Stub constructor (must exist though)
     Create();
