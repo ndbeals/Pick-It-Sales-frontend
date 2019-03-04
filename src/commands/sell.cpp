@@ -53,7 +53,7 @@ bool Sell::checkEventTitle( std::string input )
  */
 bool Sell::checkEventTitleLength( std::string input )
 {
-    return (input.length() >= MIN_USERNAME_LENGTH && input.length() <= MAX_USERNAME_LENGTH);
+    return (input.length() >= MIN_EVENTTITLE_LENGTH && input.length() <= MAX_EVENT_TITLE_LENGTH);
 }
 
 /** Checks if the given ticket sale price is valid or not
