@@ -12,9 +12,7 @@ namespace UserInput {
 	 * @param maxLength Maximum length of the input string (default=25)
 	 * @return the user input as a string
 	 */
-	// std::string GetStringInput( unsigned int, unsigned int);
 	std::string GetStringInput( unsigned int minLength = 1 , unsigned int maxLength = 25 , std::string tooLongError = "Input too long\n" , std::string tooShortError = "Input too short\n" );
-	// std::string GetStringInput( unsigned int minLength = 1 , unsigned int maxLength = 25 , std::string tooLongError = "Input too long\n" );
 
 	/**
 	 * GetCommandInput wraps GetStringInput and just prints a text prompt before asking for input
@@ -35,7 +33,7 @@ namespace UserInput {
 	 * @param min Minimum value of the float (default=0)
 	 * @param max Maximum value of the float (default=10000)
 	 */
-	float GetFloatInput( float min = 0.0f , float max = 10000.0f );
+	float GetFloatInput( float min = 0.0f , float max = 10000.0f , std::string tooLowError = "input too low" , std::string tooHighError = "input too high" );
 
 }
 

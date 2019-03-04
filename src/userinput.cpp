@@ -51,14 +51,6 @@ namespace UserInput {
 
 		return input;
 	}
-	// std::string GetStringInput( uint minLength , uint maxLength , std::string tooLongError = "Input too long\n" ) 
-	// {
-		// GetStringInput( minLength , maxLength , "Input too short\n" , tooLongError);
-	// }
-	// std::string GetStringInput( uint minLength , uint maxLength ) 
-	// {
-		// GetStringInput( minLength , maxLength , "Input too short\n" ,"Input too long\n" );
-	// }
 
 	/**
 	 * Read an integer input from the command line, takes a max and min value
@@ -111,7 +103,7 @@ namespace UserInput {
 	 * @param min Minimum value of the float (default=0)
 	 * @param max Maximum value of the float (default=10000)
 	 */
-	float GetFloatInput( float min , float max )
+	float GetFloatInput( float min , float max , std::string tooLowError, std::string tooHighError )
 	{
 		// declare used variables.
 		bool validInput = false;
@@ -130,9 +122,18 @@ namespace UserInput {
 				inputNum = std::stof( input , &charCount );
 
 				// check if input stream is PURELY a number
-				if ( (input.length() == (uint)charCount ) && (inputNum >= min && inputNum <= max) ) {
+				if ( (input.length() == (uint)charCount ) ) {
 					// If it didn't error, set validInput to true:
 					validInput = true;
+					if (inputNum < min) {
+						errorPrintf( tooLowError.c_str() );
+					}
+					if (inputNum > max) {
+						errorPrintf( tooHighError.c_str() );
+					}
+					
+
+					
 				}
 				else {
 					// otherwise, error and restart

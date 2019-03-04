@@ -56,6 +56,11 @@ bool Create::checkNameLength( std::string input )
     return (input.length() >= MIN_USERNAME_LENGTH && input.length() <= MAX_USERNAME_LENGTH);
 }
 
+bool Create::checkCreditAmount( float input )
+{
+    return inRange( input , MIN_CREDIT , MAX_CREDIT );
+}
+
 
 /** Processes the create command.
  * 
@@ -82,8 +87,8 @@ bool Create::Process()
 
 
     // Loop continuously until we get a valid input.    
-    bool success = false;
-    while ( !success )
+    bool nameSuccess = false;
+    while ( !nameSuccess )
     {
         printf( CREATE_PROMPT_NEW_NAME );
         
@@ -94,29 +99,52 @@ bool Create::Process()
         // validate the username is valid to use
         if ( checkUserName( newUsername ) && checkNameLength( newUsername ) )
         {
-            printf( CREATE_PROMPT_USER_TYPE );
-            std::string userType = UserInput::GetStringInput(0,2);
+            bool typeSuccess = false;
+            while( !typeSuccess){
+                printf( CREATE_PROMPT_USER_TYPE );
+                std::string userType = UserInput::GetStringInput(0,2);
 
-            if ( checkUserType( userType ) ) {
-                printf( CREATE_PROMPT_STARTING_CREDITS );
-                float startingCredit = UserInput::GetFloatInput(0,MAX_CREDIT); 
+                if ( checkUserType( userType ) )
+                {
+                    bool creditSuccess = false;
+                    while( !creditSuccess ){
+                        printf( CREATE_PROMPT_STARTING_CREDITS );
+                        float startingCredit = UserInput::GetFloatInput(0, MAX_CREDIT , CREATE_ERROR_CREDITS_LOW , CREATE_ERROR_CREDITS_HIGH );
+
+                        // check if input credit is valid, if so, proceed
+                        if ( checkCreditAmount( startingCredit ) ) {
+                            creditSuccess = typeSuccess = nameSuccess = true; // credit is valid, stop asking for info.
+                            printf("User %s has been successfully created.\n",newUsername.c_str());
+
+                            Transaction* create = new Transaction();
+
+                            create->Create( getCurrentUser() , Logout::TransactionNumber );
+                            AddTransaction( logout );
+                        }
+                        
+                    }
+                }
+                else
+                {
+                    errorPrintf(CREATE_ERROR_INVALID_TYPE);
+                }
             }
             
 
             // User* create = &Session::AvailableUsers.find( newUsername )->second;
-            // success = getSession()->LogIn( create );
+            // nameSuccess = getSession()->LogIn( create );
 
-            // if ( success ) 
+            // if ( nameSuccess ) 
             // {
                 // printf("Welcome, %s!\n" , create->getUserName().c_str() );
             // }
         }
-        else if ( !checkUserName( newUsername ) )
+        else if ( ! checkUserName( newUsername ) )
         {
             errorPrintf(CREATE_ERROR_NAME_TAKEN);
             // printf("Invalid username, try again: ");
         }
     }
 
-    return success;
+    return nameSuccess;
 }

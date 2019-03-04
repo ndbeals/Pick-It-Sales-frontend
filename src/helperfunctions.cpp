@@ -37,6 +37,11 @@ void errorPrintf(const char* fmt, ...)
     va_end(args);
 }
 
+bool inRange( float input , float min , float max )
+{
+    return ( input >= min && input <= max );
+}
+
 /** Trim leading and trailing spaces from a string.
  * @param String to trim.
  */

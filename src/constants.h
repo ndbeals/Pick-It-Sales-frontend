@@ -24,11 +24,14 @@
 #define CREATE_PROMPT_USER_TYPE "Enter an account type: "
 #define CREATE_PROMPT_STARTING_CREDITS "Enter a credit amount: "
 #define CREATE_ERROR_NAME_TAKEN "That name is already in use.\n"
-#define CREATE_ERROR_INVALID_TYPE "Account type not recognized."
+#define CREATE_ERROR_INVALID_TYPE "Account type not recognized.\n"
+#define CREATE_ERROR_CREDITS_LOW "Credit amounts must be 0 or greater.\n"
+#define CREATE_ERROR_CREDITS_HIGH "Credit amounts must be 999,999.99 or lower.\n"
 
 // MIN & MAX VALUES
 #define MAX_ADD_CREDIT 1000
-#define MAX_CREDIT 999999.00
+#define MAX_CREDIT 999999.99
+#define MIN_CREDIT 0
 #define MAX_EVENT_TITLE_LENGTH 25
 #define MAX_TICKET_PRICE 999.99
 #define MAX_TICKET_PURCHASE 4

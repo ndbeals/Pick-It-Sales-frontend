@@ -22,6 +22,9 @@ private:
     bool checkUserType( std::string );
 
     bool checkNameLength( std::string );
+    
+    bool checkCreditAmount( float );
+
 public:
     /// string name of this command
     static const std::string CommandName;

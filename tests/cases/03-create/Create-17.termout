@@ -6,5 +6,5 @@ Enter a command:
 Enter a new username: 
 Enter an account type: 
 Enter a credit amount: 
-ERROR: Credit amounts must be 999999 or less.
+ERROR: Credit amounts must be 999,999.99 or lower.
 Enter a credit amount: 
