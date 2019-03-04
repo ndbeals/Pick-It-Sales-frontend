@@ -8,6 +8,7 @@
 #include "commands/logout.h"
 #include "commands/create.h"
 #include "commands/sell.h"
+#include "commands/buy.h"
 #include "session.h"
 
 /// Stub constructor (must exist though)
@@ -60,6 +61,10 @@ Command* Command::GetCommandNameFromInput( std::string commandName , Session* se
     else if ( commandName == "sell" )
     {
         instance = new Sell( session );
+    }
+    else if ( commandName == "buy" )
+    {
+        instance = new Buy( session );
     }
     else
     {

@@ -22,10 +22,11 @@ TicketBatch::TicketBatch() {
  * @param float price - price of ticket
  * @param int quantityAvailable - quantity of tickets available
  */
-TicketBatch::TicketBatch(std::string eventTitle, float price, int quantityAvailable) {
+TicketBatch::TicketBatch(std::string eventTitle, float price, int quantityAvailable , User* seller) {
 	this->eventTitle = eventTitle;
 	this->price = price;
 	this->quantityAvailable = quantityAvailable;
+	this->seller = seller;
 }
 
 /** TicketBatch constructor
@@ -86,7 +87,7 @@ float TicketBatch::getPrice(){
  * @return int quantity available
  */ 
 int TicketBatch::getQuantityAvailable(){
-	this->quantityAvailable;
+	return this->quantityAvailable;
 }
 
 /** Sets value for quantity of tickets available

@@ -43,16 +43,32 @@
 #define SELL_ERROR_MAX_TICKETS "# of tickets to sell must be 100 or less.\n"
 #define SELL_ERROR_MIN_TICKETS "You cannot sell less than 1 ticket.\n"
 
+//BUY Prompts
+#define BUY_PROMPT_EVENT_TILE "Enter an Event Title: "
+#define BUY_PROMPT_NUMBER_TICKETS "Enter the amount of tickets to buy: "
+#define BUY_PROMPT_SELLER_NAME "Enter the seller's name: "
+#define BUY_PROMPT_SUCCESS "Successfully purchased tickets.\n"
+#define BUY_PROMPT_CONFIRM "Would you like to purchase this?: "
+#define BUY_ERROR_WRONG_ACCOUNT "Your account type may not buy tickets.\n"
+#define BUY_ERROR_EVENT_TOO_LONG "Event Title too long.\n"
+#define BUY_ERROR_EVENT_TOO_SHORT "Empty string not valid as Event Title.\n"
+#define BUY_ERROR_PRICE_TOO_HIGH "Price must be below $1000.\n"
+#define BUY_ERROR_PRICE_TOO_LOW "Price must be above $0.\n"
+#define BUY_ERROR_MAX_TICKETS "# of tickets to sell must be 100 or less.\n"
+#define BUY_ERROR_MIN_TICKETS "You cannot sell less than 1 ticket.\n"
+
+
+
 // MIN & MAX VALUES
 #define MAX_ADD_CREDIT 1000
 #define MAX_CREDIT 999999.99f
 #define MIN_CREDIT 0.0f
-#define MAX_EVENT_TITLE_LENGTH 25
 #define MAX_TICKET_PRICE 999.99f
 #define MIN_TICKET_PRICE 0.01f
 #define MAX_TICKET_PURCHASE 4
 #define MAX_TICKETS_FOR_SALE 100
-#define MIN_TICKETS_FOR_SALE 0
+#define MIN_TICKETS_FOR_SALE 1
+#define MAX_TICKETS_TO_BUY 4
 
 #define MAX_USERNAME_LENGTH 15
 #define MIN_USERNAME_LENGTH 1

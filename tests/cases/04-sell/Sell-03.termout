@@ -8,3 +8,4 @@ Enter a Sale Price:
 ERROR: Price must be below $1000.
 Enter a Sale Price: 
 ERROR: Price must be above $0.
+Enter a Sale Price: 

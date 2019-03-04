@@ -42,32 +42,21 @@ void Transaction::Create( class User* user , char transactionNumber )
     this->transactionString = fmt::format("{0:02d} {1:<15} {2:2} {3:#09.2f}",transactionNumber,user->getUserName(),user->getUserType(),user->getUserBalance());
 }
 
+void Transaction::Sell( TicketBatch sellBatch , char transactionNumber)
+{
+    // printf("sell? %d %s %s %d %f\n",transactionNumber,sellBatch.getEventTitle().c_str(),sellBatch.getSeller()->getUserName().c_str(),sellBatch.getQuantityAvailable(),sellBatch.getPrice());
+    this->transactionString = fmt::format("{0:02d} {1:<25} {2:<15} {3:<3} {4:#06.2f}",transactionNumber,sellBatch.getEventTitle(),sellBatch.getSeller()->getUserName(),sellBatch.getQuantityAvailable(),sellBatch.getPrice());
+    // printf("TRAN STR: %d \n",sellBatch.getQuantityAvailable())a;
+}
 
 /** Process the user buy a ticket.
  * @param User buyer - buyer of ticket
  * @param TicketBatch ticketBatch - the ticket to purchase
  * @param int numberOfTickets -number of tickets to buy
 */
-void Transaction::BuyTicket(User buyer, TicketBatch ticketBatch, int numberOfTickets) {
-    User* seller = ticketBatch.getSeller();
-    bool validAmount = numberOfTickets > 0 && 
-    numberOfTickets <= MAX_TICKET_PURCHASE && 
-    numberOfTickets <= ticketBatch.getQuantityAvailable();
- 
-    // check if number of tickets the user wishes to purchase is less than or equal to the number available
-    if (validAmount) {
-        // if valid quantity check if buyer has enough credit
-        double totalTicketCost = ticketBatch.getPrice() * numberOfTickets;
-
-        // write to transaction log
-    } else {
-        // error # of tickets invalid
-        if (numberOfTickets > MAX_TICKET_PURCHASE) {
-            errorPrintf("You may only purchase 4 tickets max.");
-        } else {
-            errorPrintf("You do not have enough credit to purchase these.");
-        }
-    }
+void Transaction::BuyTicket(TicketBatch sellBatch, int buyAmount, char transactionNumber) 
+{
+    this->transactionString = fmt::format("{0:02d} {1:<25} {2:<15} {3:<3} {4:#06.2f}",transactionNumber,sellBatch.getEventTitle(),sellBatch.getSeller()->getUserName(),sellBatch.getQuantityAvailable()-buyAmount,sellBatch.getPrice());
 }
 
 /** Process refund of a ticket

@@ -9,10 +9,11 @@
 #include "sell.h"
 #include "../user.h"
 #include "../transaction.h"
+#include "../ticketbatch.h"
 
 // Set static members of this class.
 const std::string Sell::CommandName = "sell";
-const char Sell::TransactionNumber = 1;
+const char Sell::TransactionNumber = 3;
 
 /// Constructor method for Sell, takes a session which is the current session in progress.
 Sell::Sell( Session* inSession )
@@ -51,7 +52,7 @@ bool Sell::checkEventTitle( std::string input )
  */
 bool Sell::checkEventTitleLength( std::string input )
 {
-    return (input.length() >= MIN_USERNAME_LENGTH && input.length() <= MAX_USERNAME_LENGTH);
+    return (input.length() >= MIN_EVENTTITLE_LENGTH && input.length() <= MAX_EVENTTITLE_LENGTH);
 }
 
 /** Checks if the given type is a valid user type
@@ -95,10 +96,9 @@ bool Sell::Process()
         printf( SELL_PROMPT_EVENT_TILE );
         
         // get user cli input
-        std::string eventTitle = UserInput::GetStringInput( MIN_EVENTTITLE_LENGTH , MAX_EVENT_TITLE_LENGTH , SELL_ERROR_EVENT_TOO_LONG , SELL_ERROR_EVENT_TOO_SHORT);
-
+        std::string eventTitle = UserInput::GetStringInput( MIN_EVENTTITLE_LENGTH , MAX_EVENTTITLE_LENGTH , SELL_ERROR_EVENT_TOO_LONG , SELL_ERROR_EVENT_TOO_SHORT);
         // validate the username is valid to use
-        if ( checkEventTitle( eventTitle ) && checkEventTitleLength( eventTitle ) )
+        if ( checkEventTitleLength( eventTitle ) )
         {
             bool priceSuccess = false;
             while( !priceSuccess){
@@ -110,26 +110,27 @@ bool Sell::Process()
                     bool amountSuccess = false;
                     while( !amountSuccess ){
                         printf( SELL_PROMPT_NUMBER_TICKETS );
-                        int ticketAmount = UserInput::GetIntegerInput(0, MAX_TICKETS_FOR_SALE , SELL_ERROR_MAX_TICKETS , SELL_ERROR_MIN_TICKETS );
+                        int ticketAmount = UserInput::GetIntegerInput(MIN_TICKETS_FOR_SALE, MAX_TICKETS_FOR_SALE , SELL_ERROR_MIN_TICKETS , SELL_ERROR_MAX_TICKETS );
 
                         // check if input credit is valid, if so, proceed
                         if ( checkTicketAmount( ticketAmount ) ) {
-                            amountSuccess = priceSuccess = amountSuccess = true; // credit is valid, stop asking for info.
-                            printf("User %s has been successfully selld.\n",eventTitle.c_str());
+                            amountSuccess = priceSuccess = titleSuccess = true; // credit is valid, stop asking for info.
+                            // printf("User %d has been successfully selld.\n",ticketAmount);
+                            printf(SELL_PROMPT_SUCCESS);
 
-                            // User newUser( eventTitle , salePrice , ticketAmount );
-                            // Transaction* sell = new Transaction();
+                            TicketBatch newBatch( eventTitle, salePrice , ticketAmount , getSession()->getCurrentUser() );
+                            Transaction* sell = new Transaction();
 
-                            // sell->Sell( &newUser , TransactionNumber );
-                            // getSession()->AddTransaction( sell );
+                            sell->Sell( newBatch , TransactionNumber );
+                            getSession()->AddTransaction( sell );
                         }
                         
                     }
                 }
-                else
-                {
-                    errorPrintf(CREATE_ERROR_INVALID_TYPE);
-                }
+                // else
+                // {
+                    // errorPrintf(CREATE_ERROR_INVALID_TYPE);
+                // }
             }
         }
         else if ( ! checkEventTitle( eventTitle ) )

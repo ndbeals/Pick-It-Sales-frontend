@@ -40,7 +40,7 @@ public:
      * @param TicketBatch ticketBatch - the ticket to purchase
      * @param int numberOfTickets -number of tickets to buy
     */
-    void BuyTicket(User buyer, TicketBatch ticketBatch, int numberOfTickets);
+    void BuyTicket( TicketBatch, int, char);
 
     /** Process refund of a ticket
      * @param User buyer - user to refund credit to
@@ -57,7 +57,7 @@ public:
 
     /** Procces the sale of the ticket
     */
-    void Sell(/* args */);
+    void Sell( TicketBatch, char );
 
     /** Returns the Transaction object's transaction string
      * @return string transactionString - transaction string of all concatenated transactions

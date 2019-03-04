@@ -3,8 +3,8 @@ Enter a command:
 Enter a username: 
 Welcome, admin!
 Enter a command: 
-Enter an Event to sell to: 
+Enter an Event Title: 
 ERROR: Event Title too long.
-Enter an Event to sell to: 
+Enter an Event Title: 
 ERROR: Empty string not valid as Event Title.
-Enter an Event to sell to: 
+Enter an Event Title: 

@@ -16,7 +16,7 @@ private:
     int quantityAvailable;  // number of tickets available in a ticketbatch
 public:
 	TicketBatch();
-    TicketBatch(std::string eventTitle, float price, int quantityAvailable);
+    TicketBatch(std::string eventTitle, float price, int quantityAvailable, User* seller);
     TicketBatch(std::string fileLine );
     
     /**
