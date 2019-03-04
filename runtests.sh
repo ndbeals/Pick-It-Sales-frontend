@@ -40,12 +40,6 @@ compare_output() {
     fi
     # if results have content, that means the test failed, notify.
     echo "$results"
-    # if [ -z "$results" ]
-    # then
-    #     printf "%-20s \033[32m%s\033[0m\n" "$testname" "PASSED!"
-    # else
-    #     printf "%-20s \033[31m%s\033[0m\n" "$testname" "FAILED!"
-    # fi
 }
 
 # Run each test case
