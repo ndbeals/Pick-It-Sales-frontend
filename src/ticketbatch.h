@@ -15,8 +15,21 @@ private:
     float price;           // price of ticketbatch
     int quantityAvailable;  // number of tickets available in a ticketbatch
 public:
+    /** TicketBatch default constructor
+     * default price and quantityAvailable to 0
+     */
 	TicketBatch();
+    /** TicketBatch constructor
+     * Set given event title, price, and quantity available
+     * @param string event title - title of ticket event
+     * @param float price - price of ticket
+     * @param int quantityAvailable - quantity of tickets available
+     */
     TicketBatch(std::string eventTitle, float price, int quantityAvailable);
+    /** TicketBatch constructor
+     * Set event title, seller, price, and quantity available based on given file line
+     * @param string fileLine
+     */
     TicketBatch(std::string fileLine );
     
     /**

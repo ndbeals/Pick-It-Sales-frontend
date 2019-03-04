@@ -100,12 +100,15 @@ public:
 	 * @see setSessionState
 	 */
 	SessionState getSessionState() { return sessionState; }
-	/// Sets the sessions current state.
-	/// @see getSessionState
+	/** Sets the sessions current state.
+	 * @param SessionState newState - new session state.
+	 * @see getSessionState
+	 */
 	void setSessionState( SessionState newState ) { sessionState = newState; }
 
-	/// Wrapper function for reading command inputs, also checks for eof on std::cin and exits if true.
-	/// @see UserInput::GetCommandInput
+	/** Wrapper function for reading command inputs, also checks for eof on std::cin and exits if true.
+	 * @see UserInput::GetCommandInput
+	 */ 
 	void ReadCommandInput();
 
 	/** Returns the stored last user input.
@@ -120,9 +123,12 @@ public:
 	 */
 	void AddTransaction( Transaction* );
 
+	/** Process writing trasactions to log file
+	 */ 
 	void WriteTransactionFile();
 
-	/// Check if user is logged in at all.
+	/** Check if user is logged in at all.
+	 */ 
 	bool isLoggedIn() { return (getSessionState() == SessionState::User || getSessionState() == SessionState::Admin); }
 	
 	/** Log in the user, sets the state to logged in.
@@ -131,7 +137,8 @@ public:
 	 */
 	bool LogIn( class User* user );
 	
-	/// Check if the user has logged out. 
+	/** Check if the user has logged out.
+	 */ 
 	bool isLoggedOut() { return (getSessionState() == SessionState::LoggedOut || getSessionState() == SessionState::New); }
 	/** Log the user out, sets the state to logged out.
 	 * @param User* user - user logging in
@@ -139,13 +146,21 @@ public:
 	 */
 	bool LogOut();
 
-	/// Checks if the logged in user is an admin. 
+	/**Checks if the logged in user is an admin. 
+	 */ 
 	bool isAdmin() { return (getSessionState() == SessionState::Admin); }
-	/// Checks if the state is active (logged in or newly created).
+	/**Checks if the state is active (logged in or newly created).
+	 */ 
 	bool isActive(){ return (isLoggedIn() || getSessionState() == SessionState::New); }
 
 	/// Current user
+	/** Returns the current user
+	 * @return User* currentUser - current user in the session
+	 */ 
 	class User* getCurrentUser() { return this->currentUser; };
+	/** Sets the user to the session
+	 * @param User* newUser - user to set to the session
+	 */ 
 	void setCurrentUser( class User* newUser ) { this->currentUser = newUser; };
 };
 
