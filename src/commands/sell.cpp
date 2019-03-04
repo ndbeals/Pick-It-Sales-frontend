@@ -14,7 +14,9 @@
 const std::string Sell::CommandName = "sell";
 const char Sell::TransactionNumber = 1;
 
-/// Constructor method for Sell, takes a session which is the current session in progress.
+/** Constructor method for Sell, takes a session which is the current session in progress.
+ * @param Session* inSession - in progress session.
+ */ 
 Sell::Sell( Session* inSession )
 {
     userSession = inSession;
@@ -44,7 +46,7 @@ bool Sell::checkEventTitle( std::string input )
     return false;
 }
 
-/** Checks if the given name is of valid length defined by 
+/** Checks if the given event name is of valid length defined by 
  * MIN_USERNAME_LENGTH and MAX_USERNAME_LENGTH inclusive
  * @param string input - user input
  * @return bool - Valid user length or not.
@@ -54,19 +56,19 @@ bool Sell::checkEventTitleLength( std::string input )
     return (input.length() >= MIN_USERNAME_LENGTH && input.length() <= MAX_USERNAME_LENGTH);
 }
 
-/** Checks if the given type is a valid user type
- * @param string type - user type
- * @return bool - Valid user type or not.
+/** Checks if the given ticket sale price is valid or not
+ * @param float price - sale price
+ * @return bool - Valid sale price or not
  */
 bool Sell::checkSalePrice( float price )
 {
     return inRange( price, MIN_TICKET_PRICE, MAX_TICKET_PRICE );
 }
 
-/** Checks if the given credit amount is a valid amount
- * defined by MIN_CREDIT and MAX_CREDIT inclusive
- * @param string input - user input
- * @return bool - Valid user length or not.
+/** Checks if the given ticket amount is a valid amount
+ * defined by MIN_TICKETS_FOR_SALE and MAX_TICKETS_FOR_SALE inclusive
+ * @param int input - user input
+ * @return bool - Valid quantity of tickets for sale
  */
 bool Sell::checkTicketAmount( int input )
 {

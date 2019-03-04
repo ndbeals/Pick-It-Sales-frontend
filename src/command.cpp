@@ -29,7 +29,7 @@ Command::~Command()
 /** Processes the command
  * 
  * this is the function declaration that'll be overwritten by each child to implement their specific functionality.
- * @return Login success.
+ * @return bool - whether or not the Login was successful.
  */
 bool Command::Process()
 {
@@ -39,6 +39,8 @@ bool Command::Process()
 }
 
 /** Factory function to create commands.
+ * @param string commandName - name of command
+ * @param Session* session - current session
  * @return New Command.
  */
 Command* Command::GetCommandNameFromInput( std::string commandName , Session* session )
