@@ -64,9 +64,9 @@ private:
 public:
 	// Variable block
 
-	// Method block
-	/// Session constructor
-	///  set state to logged out by default
+	/** Session default constructor
+	 * default state to logged out
+	 */
 	Session(/* args */);
 	/// Stub deconstructor (must exist though)
 	~Session();
@@ -124,12 +124,19 @@ public:
 
 	/// Check if user is logged in at all.
 	bool isLoggedIn() { return (getSessionState() == SessionState::User || getSessionState() == SessionState::Admin); }
-	/// Log in the user, sets the state to logged in.
+	
+	/** Log in the user, sets the state to logged in.
+	 * @param User* user - user logging in
+	 * @return bool - if change of the session state for the user logging in was successful or not
+	 */
 	bool LogIn( class User* user );
 	
 	/// Check if the user has logged out. 
 	bool isLoggedOut() { return (getSessionState() == SessionState::LoggedOut || getSessionState() == SessionState::New); }
-	/// Log the user out, sets the state to logged out.
+	/** Log the user out, sets the state to logged out.
+	 * @param User* user - user logging in
+	 * @return bool - if change of the session state to logged out was successful or not
+	 */
 	bool LogOut();
 
 	/// Checks if the logged in user is an admin. 

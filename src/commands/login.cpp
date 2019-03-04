@@ -13,7 +13,9 @@
 const std::string Login::CommandName = "login";
 const char Login::TransactionNumber = 1;
 
-/// Constructor method for Login, takes a session which is the current session in progress.
+/** Constructor method for Login, takes a session which is the current session in progress.
+ * @param Session* inSession - in progress session.
+ */ 
 Login::Login( Session* inSession )
 {
     userSession = inSession;

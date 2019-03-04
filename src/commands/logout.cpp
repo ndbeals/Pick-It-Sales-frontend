@@ -9,8 +9,9 @@
 const std::string Logout::CommandName = "logout";
 const char Logout::TransactionNumber = 0; // 00;
 
-/// Constructor method for Logout, takes a session which is the current session in progress.
-/// @param Current, in progress session.
+/** Constructor method for Logout, takes a session which is the current session in progress.
+ * @param Session* inSession - in progress session.
+ */ 
 Logout::Logout( Session* inSession)
 {
     userSession = inSession;
