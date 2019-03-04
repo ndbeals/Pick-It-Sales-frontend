@@ -8,6 +8,7 @@
 #include "../session.h"
 #include "create.h"
 #include "../user.h"
+#include "../transaction.h"
 
 // Set static members of this class.
 const std::string Create::CommandName = "create";
@@ -130,10 +131,11 @@ bool Create::Process()
                             creditSuccess = typeSuccess = nameSuccess = true; // credit is valid, stop asking for info.
                             printf("User %s has been successfully created.\n",newUsername.c_str());
 
+                            User newUser( newUsername , userType , startingCredit );
                             Transaction* create = new Transaction();
 
-                            create->Create( getCurrentUser() , Logout::TransactionNumber );
-                            AddTransaction( logout );
+                            create->Create( &newUser , TransactionNumber );
+                            getSession()->AddTransaction( create );
                         }
                         
                     }

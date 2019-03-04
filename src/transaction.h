@@ -20,6 +20,11 @@ public:
      */
     void LogOut( User* , char);
 
+    /** Create
+     * makes a Create transactions
+     */
+    void Create( User* , char );
+
     /** Process adding credit to user account
      * @param User user - user account to add credit to
      * @param double creditToAdd - the amount of credit to add

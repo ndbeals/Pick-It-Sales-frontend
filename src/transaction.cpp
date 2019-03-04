@@ -29,6 +29,11 @@ void Transaction::LogOut( class User* user , char transactionNumber )
 
 }
 
+void Transaction::Create( class User* user , char transactionNumber )
+{
+    this->transactionString = fmt::format("{0:02d} {1:<15} {2:2} {3:#09.2f}",transactionNumber,user->getUserName(),user->getUserType(),user->getUserBalance());
+}
+
 
 /** Process the user buy a ticket.
  * @param User buyer - buyer of ticket
