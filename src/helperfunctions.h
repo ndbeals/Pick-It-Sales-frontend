@@ -14,8 +14,15 @@ void errorPrintf(const char* fmt, ...);
  * @param float input - user input
  * @param float min - minimum value
  * @param float max - maxium value
+ * @return bool - whether or not the input is in the given range
  */
 bool inRange( float input , float min , float max );
+/** A function to check if a given numeric input is in the given range
+ * @param int input - user input
+ * @param int min - minimum value
+ * @param int max - maxium value
+ * @return bool - whether or not the input is in the given range
+ */
 bool inRange( int input , int min , int max );
 
 /** Trim leading and trailing spaces from a string.
