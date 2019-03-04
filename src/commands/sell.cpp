@@ -47,7 +47,7 @@ bool Sell::checkEventTitle( std::string input )
 }
 
 /** Checks if the given event name is of valid length defined by 
- * MIN_USERNAME_LENGTH and MAX_USERNAME_LENGTH inclusive
+ * MIN_EVENTTITLE_LENGTH and MAX_EVENT_TITLE_LENGTH inclusive
  * @param string input - user input
  * @return bool - Valid user length or not.
  */
