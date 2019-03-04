@@ -18,6 +18,10 @@
 
 
 
+/** Logs the user out, creates an end of session transaction
+ * @param User* user - the user
+ * @param char transactionNumber - the transaction number
+ */
 void Transaction::LogOut( class User* user , char transactionNumber )
 {
     // printf("logging out: %s\n",user->getUserName().c_str());
@@ -29,6 +33,10 @@ void Transaction::LogOut( class User* user , char transactionNumber )
 
 }
 
+/** Makes a Create transaction when a user is created
+ * @param User* user - the user
+ * @param char transactionNumber - the transaction number
+ */
 void Transaction::Create( class User* user , char transactionNumber )
 {
     this->transactionString = fmt::format("{0:02d} {1:<15} {2:2} {3:#09.2f}",transactionNumber,user->getUserName(),user->getUserType(),user->getUserBalance());
@@ -62,9 +70,11 @@ void Transaction::BuyTicket(User buyer, TicketBatch ticketBatch, int numberOfTic
     }
 }
 
-/**
- * Process refund of ticket(s)
- */ 
+/** Process refund of a ticket
+ * @param User buyer - user to refund credit to
+ * @param User seller - user to refund credit from
+ * @param double creditAmount - credit transfered between buyer and seller
+*/
 void Transaction::Refund(class User buyer, User seller, double amount) {
     // check if amount to refund is greater than $0.00
     if (amount > 0) {
@@ -78,11 +88,13 @@ void Transaction::Refund(class User buyer, User seller, double amount) {
     }
 }
 
+/// Stub constructor (must exist though)
 Transaction::Transaction()
 {
     
 }
 
+/// Stub deconstructor (must exist though)
 Transaction::~Transaction()
 {
 

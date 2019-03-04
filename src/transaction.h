@@ -12,16 +12,20 @@ class Transaction {
 private:
     std::string transactionString;
 public:
+    /// Stub constructor (must exist though)
 	Transaction();
+    /// Stub deconstructor (must exist though)
     ~Transaction();
 
-    /** LogOut
-     * Logs the user out, creates an end of session transaction
+    /** Logs the user out, creates an end of session transaction
+     * @param User* user - the user
+     * @param char transactionNumber - the transaction number
      */
     void LogOut( User* , char);
 
-    /** Create
-     * makes a Create transactions
+    /** Makes a Create transaction when a user is created
+     * @param User* user - the user
+     * @param char transactionNumber - the transaction number
      */
     void Create( User* , char );
 
@@ -55,7 +59,9 @@ public:
     */
     void Sell(/* args */);
 
-    /// TransactionString
+    /** Returns the Transaction object's transaction string
+     * @return string transactionString - transaction string of all concatenated transactions
+     */
     std::string getTransactionString() { return this->transactionString; };
     void setTransactionString( std::string newString ) { this->transactionString = newString; };
 };
