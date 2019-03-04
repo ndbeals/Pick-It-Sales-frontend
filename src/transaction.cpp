@@ -40,7 +40,7 @@ void Transaction::Create( class User* user , char transactionNumber )
  * @param TicketBatch ticketBatch - the ticket to purchase
  * @param int numberOfTickets -number of tickets to buy
 */
-void Transaction::buyTicket(User buyer, TicketBatch ticketBatch, int numberOfTickets) {
+void Transaction::BuyTicket(User buyer, TicketBatch ticketBatch, int numberOfTickets) {
     User* seller = ticketBatch.getSeller();
     bool validAmount = numberOfTickets > 0 && 
     numberOfTickets <= MAX_TICKET_PURCHASE && 
@@ -65,7 +65,7 @@ void Transaction::buyTicket(User buyer, TicketBatch ticketBatch, int numberOfTic
 /**
  * Process refund of ticket(s)
  */ 
-void Transaction::refund(class User buyer, User seller, double amount) {
+void Transaction::Refund(class User buyer, User seller, double amount) {
     // check if amount to refund is greater than $0.00
     if (amount > 0) {
         // add amount to buyer account
