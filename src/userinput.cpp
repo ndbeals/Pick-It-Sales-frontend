@@ -13,7 +13,7 @@ namespace UserInput {
 	 * @param maxLength Maximum length of the input string (default=25)
 	 * @return the user input as a string
 	 */
-	std::string GetStringInput( uint minLength , uint maxLength ) 
+	std::string GetStringInput( uint minLength , uint maxLength , std::string tooLongError , std::string tooShortError ) 
 	{
 		// bool validInput = false;
 		std::string input;
@@ -34,11 +34,11 @@ namespace UserInput {
 			// validate input against min and max length;
 			if ( input.length() < minLength ) {
 				// too short
-				errorPrintf("Input too short\n");
+				errorPrintf(tooShortError.c_str());
 			}
 			else if ( input.length() > maxLength ) {
 				// too long
-				errorPrintf("%s","Input too long\n");
+				errorPrintf(tooLongError.c_str());
 				// ErrorPrintf("%s%s%s" , "Input too long\n","test\n");
 			}
 			else {
@@ -51,6 +51,14 @@ namespace UserInput {
 
 		return input;
 	}
+	// std::string GetStringInput( uint minLength , uint maxLength , std::string tooLongError = "Input too long\n" ) 
+	// {
+		// GetStringInput( minLength , maxLength , "Input too short\n" , tooLongError);
+	// }
+	// std::string GetStringInput( uint minLength , uint maxLength ) 
+	// {
+		// GetStringInput( minLength , maxLength , "Input too short\n" ,"Input too long\n" );
+	// }
 
 	/**
 	 * Read an integer input from the command line, takes a max and min value

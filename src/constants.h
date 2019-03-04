@@ -13,10 +13,18 @@
 
 // STRING CONSTANTS
 #define COMMAND_PROMPT_PREFIX "Enter a command: "
+#define COMMAND_NOT_PERMITTED "You are not permitted to access this.\n"
 #define ERROR_PREFIX "ERROR: "
 #define ERROR_COMMAND "invalid command.\n"
 #define LOGIN_FIRST_PROMPT "You must login before executing that command.\n"
 #define LOGIN_TWICE_ERROR "You are already logged in!\n"
+
+// Create prompts
+#define CREATE_PROMPT_NEW_NAME "Enter a new username: "
+#define CREATE_PROMPT_USER_TYPE "Enter an account type: "
+#define CREATE_PROMPT_STARTING_CREDITS "Enter a credit amount: "
+#define CREATE_ERROR_NAME_TAKEN "That name is already in use.\n"
+#define CREATE_ERROR_INVALID_TYPE "Account type not recognized."
 
 // MIN & MAX VALUES
 #define MAX_ADD_CREDIT 1000
@@ -25,7 +33,9 @@
 #define MAX_TICKET_PRICE 999.99
 #define MAX_TICKET_PURCHASE 4
 #define MAX_TICKETS_FOR_SALE 100
+
 #define MAX_USERNAME_LENGTH 15
+#define MIN_USERNAME_LENGTH 1
 
 // TRANSACTION TYPES
 enum TRANSACTION {

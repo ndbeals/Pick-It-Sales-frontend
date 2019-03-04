@@ -6,6 +6,7 @@
 #include "command.h"
 #include "commands/login.h"
 #include "commands/logout.h"
+#include "commands/create.h"
 #include "session.h"
 
 /// Stub constructor (must exist though)
@@ -50,6 +51,11 @@ Command* Command::GetCommandNameFromInput( std::string commandName , Session* se
     {
         instance = new Logout( session );
     }
+    else if ( commandName == "create" )
+    {
+        instance = new Create( session );
+    }
+    
     else
     {
         instance = new Command( session );

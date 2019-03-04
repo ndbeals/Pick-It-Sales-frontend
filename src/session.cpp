@@ -188,7 +188,7 @@ void Session::AddTransaction( Transaction* validTransaction )
 
 void Session::WriteTransactionFile()
 {
-    printf("writing transactions\n");
+    // printf("writing transactions\n");
     
     std::ofstream transactionFile;
     transactionFile.open( Session::DailyTransactionFile , std::ios::out | std::ios::app );
@@ -199,7 +199,7 @@ void Session::WriteTransactionFile()
 
         transactionFile << trn.c_str();
 
-        printf("writing transaction: %d %s \n",trn.length(),trn.c_str());
+        // printf("writing transaction: %d %s \n",trn.length(),trn.c_str());
 
         validTransactions.pop();
         // delete currentTransaction;

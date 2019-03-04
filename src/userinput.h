@@ -12,7 +12,9 @@ namespace UserInput {
 	 * @param maxLength Maximum length of the input string (default=25)
 	 * @return the user input as a string
 	 */
-	std::string GetStringInput( unsigned int minLength = 1 , unsigned int maxLength = 25 );
+	// std::string GetStringInput( unsigned int, unsigned int);
+	std::string GetStringInput( unsigned int minLength = 1 , unsigned int maxLength = 25 , std::string tooLongError = "Input too long\n" , std::string tooShortError = "Input too short\n" );
+	// std::string GetStringInput( unsigned int minLength = 1 , unsigned int maxLength = 25 , std::string tooLongError = "Input too long\n" );
 
 	/**
 	 * GetCommandInput wraps GetStringInput and just prints a text prompt before asking for input

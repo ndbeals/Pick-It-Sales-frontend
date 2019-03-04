@@ -30,18 +30,22 @@ compare_output() {
     sed -i -e 's/ERROR:/ERROR-/g; s/: /: \n/g; s/ERROR-/ERROR:/g' "$result"
 
     #compare them.
-    results=$(diff --suppress-common-lines -y -Z -T -t "$expected" "$result")
+    local results=$(diff --suppress-common-lines -y -Z -T -t "$expected" "$result")
 
     # Write results to file. (echoing it to fix newlines)
-    echo "$results" >> "$SUMMARYFILE"
-
-    # if results have content, that means the test failed, notify.
-    if [ -z "$results" ]
-    then
-        printf "%-20s \033[32m%s\033[0m\n" "$testname" "PASSED!"
+    if [ -z "$results" ]; then
+        echo -e "\t\t\t\t\t\tSUCCESS!" >> "$SUMMARYFILE"
     else
-        printf "%-20s \033[31m%s\033[0m\n" "$testname" "FAILED!"
+        echo "$results" >> "$SUMMARYFILE"
     fi
+    # if results have content, that means the test failed, notify.
+    echo "$results"
+    # if [ -z "$results" ]
+    # then
+    #     printf "%-20s \033[32m%s\033[0m\n" "$testname" "PASSED!"
+    # else
+    #     printf "%-20s \033[31m%s\033[0m\n" "$testname" "FAILED!"
+    # fi
 }
 
 # Run each test case
@@ -69,10 +73,25 @@ run_test_case() {
     # Add a new line to the end of the test file
     # then pipe the newly edited file into the program
     # capture the output and redirect it to the results directory
-    (sed -e '$a\' "$filepath" | "$BIN" $RES test.trn) > "$RESULTDIR/$CASENAME/$filename.output"
+    (sed -e '$a\' "$filepath" | "$BIN" $RES "$RESULTDIR/$CASENAME/$filename.trn") > "$RESULTDIR/$CASENAME/$filename.output"
 
     # After having executed the test, run the compare function
-    compare_output "$testdir/$filename.termout" "$RESULTDIR/$CASENAME/$filename.output" "$filename"
+    # compare_output "$testdir/$filename.termout" "$RESULTDIR/$CASENAME/$filename.output" "$filename"
+    echo -e "\tTerminal output:" >> "$SUMMARYFILE"
+    local term_results=$(compare_output "$testdir/$filename.termout" "$RESULTDIR/$CASENAME/$filename.output" "$filename")
+    local trn_results;
+
+    if [[ -f "$testdir/$filename.trnout" && -f "$RESULTDIR/$CASENAME/$filename.trn" ]]; then
+        # echo "compare trn"
+        echo -e "\tTransaction output:" >> "$SUMMARYFILE"
+        trn_results=$(compare_output "$testdir/$filename.trnout" "$RESULTDIR/$CASENAME/$filename.trn" "$filename")
+    fi
+
+    if [[ -z "$term_results" && -z $trn_results ]]; then
+        printf "%-20s \033[32m%s\033[0m\n" "$filename" "PASSED!"
+    else
+        printf "%-20s \033[31m%s\033[0m\n" "$filename" "FAILED!"
+    fi
 }
 
 parse_case() {

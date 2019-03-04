@@ -13,8 +13,8 @@
 #include "transaction.h"
 #include "userinput.h"
 
-// #include "format.cc"
-// #include "fmt/format.h"
+#include "format.cc"
+#include "fmt/format.h"
 
 
 
@@ -23,7 +23,7 @@ void Transaction::LogOut( class User* user , char transactionNumber )
     // printf("logging out: %s\n",user->getUserName().c_str());
 
     // this->transactionString =  "00_" + user->getUserName();
-    // this->transactionString = fmt::format("{0:02d} {1:<15} {2:2} {3:#09.2f}",transactionNumber,user->getUserName(),user->getUserType(),user->getUserBalance());
+    this->transactionString = fmt::format("{0:02d} {1:<15} {2:2} {3:#09.2f}",transactionNumber,user->getUserName(),user->getUserType(),user->getUserBalance());
     // this->transactionString = fmt::format("{0} {1:<15}","00",user->getUserName());
     // printf("length: %d  %s\n",this->transactionString.length(),getTransactionString().c_str());
 

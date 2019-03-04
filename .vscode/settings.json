@@ -40,7 +40,13 @@
         "ctime": "cpp",
         "filesystem": "cpp",
         "ratio": "cpp",
-        "mutex": "cpp"
+        "mutex": "cpp",
+        "condition_variable": "cpp",
+        "cstddef": "cpp",
+        "cstring": "cpp",
+        "functional": "cpp",
+        "memory": "cpp",
+        "thread": "cpp"
     },
     "files.eol": "\n",
     "python.linting.pylintEnabled": true,
