@@ -1,0 +1,11 @@
+Welcome to Pick-It Sales!
+Enter a command: 
+Enter a username: 
+Welcome, admin!
+Enter a command: 
+Enter an Event Title: 
+Enter a Sale Price: 
+ERROR: Price must be below $1000.
+Enter a Sale Price: 
+ERROR: Price must be above $0.
+Enter a Sale Price: 

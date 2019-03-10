@@ -1,0 +1,10 @@
+Welcome to Pick-It Sales!
+Enter a command: 
+Enter a username: 
+Welcome, admin!
+Enter a command: 
+Enter an Event Title: 
+ERROR: Event Title too long.
+Enter an Event Title: 
+ERROR: Empty string not valid as Event Title.
+Enter an Event Title: 

@@ -1,0 +1,14 @@
+Welcome to Pick-It Sales!
+Enter a command: 
+Enter a username: 
+Welcome, admin!
+Enter a command: 
+Enter an Event Title: 
+Enter a Sale Price: 
+# of Tickets to sell: 
+ERROR: # of tickets to sell must be 100 or less.
+# of Tickets to sell:
+ERROR: You cannot sell less than 1 ticket.
+# of Tickets to sell:
+ERROR: You cannot sell less than 1 ticket.
+# of Tickets to sell:
