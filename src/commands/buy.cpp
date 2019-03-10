@@ -216,10 +216,6 @@ bool Buy::Process()
                         }
                     }
                 }
-                // else
-                // {
-                    // errorPrintf(CREATE_ERROR_INVALID_TYPE);
-                // }
             }
         }
         else

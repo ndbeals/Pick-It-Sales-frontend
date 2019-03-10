@@ -42,6 +42,15 @@ void Transaction::Create( class User* user , char transactionNumber )
     this->transactionString = fmt::format("{0:02d} {1:<15} {2:2} {3:#09.2f}",transactionNumber,user->getUserName(),user->getUserType(),user->getUserBalance());
 }
 
+/** Makes a Delete transaction when a user is created
+ * @param User* user - the user
+ * @param char transactionNumber - the transaction number
+ */
+void Transaction::Delete( class User* user , char transactionNumber )
+{
+    this->transactionString = fmt::format("{0:02d} {1:<15} {2:2} {3:#09.2f}",transactionNumber,user->getUserName(),user->getUserType(),user->getUserBalance());
+}
+
 void Transaction::Sell( TicketBatch sellBatch , char transactionNumber)
 {
     // printf("sell? %d %s %s %d %f\n",transactionNumber,sellBatch.getEventTitle().c_str(),sellBatch.getSeller()->getUserName().c_str(),sellBatch.getQuantityAvailable(),sellBatch.getPrice());
@@ -64,17 +73,13 @@ void Transaction::BuyTicket(TicketBatch sellBatch, int buyAmount, char transacti
  * @param User seller - user to refund credit from
  * @param double creditAmount - credit transfered between buyer and seller
 */
-void Transaction::Refund(class User buyer, User seller, double amount) {
-    // check if amount to refund is greater than $0.00
-    if (amount > 0) {
-        // add amount to buyer account
+void Transaction::Refund(class User* buyer,class User* seller, float amount , char transactionNumber) {
+    this->transactionString = fmt::format("{0:02d} {1:<15} {2:<15} {3:#09.2f}",transactionNumber,buyer->getUserName(),seller->getUserName(),amount);
+}
 
-        // subtract amount from seller account
-
-        // write to log
-    } else {
-        // error
-    }
+void Transaction::AddCredit( class User* creditUser , float amount , char transactionNumber )
+{
+    this->transactionString = fmt::format("{0:02d} {1:<15} {2:2} {3:#09.2f}",transactionNumber,creditUser->getUserName(),creditUser->getUserType(),amount);
 }
 
 /// Stub constructor (must exist though)

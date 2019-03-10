@@ -58,10 +58,38 @@
 #define BUY_ERROR_MAX_TICKETS "# of tickets to sell must be 100 or less.\n"
 #define BUY_ERROR_MIN_TICKETS "You cannot sell less than 1 ticket.\n"
 
+// DELETE PROmptys
+#define DELETE_ERROR_ADMIN_ONLY "Unpriveleged users may not delete users.\n"
+#define DELETE_ERROR_USER_NOT_EXISTS "Username does not exist, choose one that exists.\n"
+#define DELETE_ERROR_CANT_DELETE_SELF "Cannot delete the logged in account.\n"
+#define DELETE_PROMPT_SUCCESS "Successfully deleted the user.\n"
+#define DELETE_PROMPT_NAME "Enter a username to delete: "
+// #define DELETE_
+// #define DELETE_
 
+// REFUND Prompts
+#define REFUND_PROMPT_BUYER "Enter the buyer's username: "
+#define REFUND_PROMPT_SELLER "Enter the seller's username: "
+#define REFUND_PROMPT_AMOUNT "Enter the amount to refund: "
+#define REFUND_PROMPT_SUCCESS "Successfully processed the refund.\n"
+#define REFUND_ERROR_AMOUNT_NEG "The refund amount must be positive.\n"
+#define REFUND_ERROR_ADMIN_ONLY "only admins may issue refunds.\n"
+#define REFUND_ERROR_BUYER_NAME "the buyer must exist to refund.\n"
+#define REFUND_ERROR_SELLER_NAME "The seller must exist to refund.\n"
+#define REFUND_ERROR_NOT_ENOUGH_BALANCE "The seller does not have a sufficent balance to refund the given amount.\n"
+
+//ADDCREDIT prompts
+#define ADDCREDIT_PROMPT_AMOUNT "Enter the amount of credit to add: "
+#define ADDCREDIT_PROMPT_USERNAME "Enter a username to add credit to: "
+#define ADDCREDIT_PROMPT_SUCCESS "Successfully added credit.\n"
+#define ADDCREDIT_ERROR_USERNAME "must enter a username that exists to add credit.\n"
+#define ADDCREDIT_ERROR_AMOUNT_NEG "credit amount must be over 0.\n"
+#define ADDCREDIT_ERROR_AMOUNT_MAX "credit amount must be equal to or under $1000.\n"
+#define ADDCREDIT_ERROR_USER_AT_MAX "the user is already at the maximum amount of credit.\n"
+// #define ADDCREDIT_
 
 // MIN & MAX VALUES
-#define MAX_ADD_CREDIT 1000
+#define MAX_ADD_CREDIT 1000.0f
 #define MAX_CREDIT 999999.99f
 #define MIN_CREDIT 0.0f
 #define MAX_TICKET_PRICE 999.99f

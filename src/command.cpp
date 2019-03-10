@@ -9,6 +9,9 @@
 #include "commands/create.h"
 #include "commands/sell.h"
 #include "commands/buy.h"
+#include "commands/delete.h"
+#include "commands/refund.h"
+#include "commands/addcredit.h"
 #include "session.h"
 
 /// Stub constructor (must exist though)
@@ -49,6 +52,14 @@ bool Command::validateUserName( std::string input )
     return true;
 }
 
+User* Command::GetUserByName( std::string input )
+{
+    if ( validateUserName( input ) ) {
+        return &Session::AvailableUsers[input];
+    }
+    return NULL;
+}
+
 /** Factory function to create commands.
  * @param string commandName - name of command
  * @param Session* session - current session
@@ -77,6 +88,18 @@ Command* Command::GetCommandNameFromInput( std::string commandName , Session* se
     else if ( commandName == "buy" )
     {
         instance = new Buy( session );
+    }
+    else if ( commandName == "delete" )
+    {
+        instance = new Delete( session );
+    }
+    else if ( commandName == "refund" )
+    {
+        instance = new Refund( session );
+    }
+    else if ( commandName == "addcredit" )
+    {
+        instance = new AddCredit( session );
     }
     else
     {

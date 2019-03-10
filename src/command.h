@@ -37,7 +37,11 @@ public:
      */
     bool validateUserName( std::string );
 
-
+    /** Gets a user object with the given name;
+     * @param user name
+     * @return valid user object
+     */
+    User* GetUserByName( std::string );
 
     /** Processes the command
      * 

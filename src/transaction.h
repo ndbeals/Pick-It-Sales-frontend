@@ -29,11 +29,17 @@ public:
      */
     void Create( User* , char );
 
+    /** Makes a Delete transaction when a user is created
+     * @param User* user - the user
+     * @param char transactionNumber - the transaction number
+     */
+    void Delete( User* , char );
+
     /** Process adding credit to user account
      * @param User user - user account to add credit to
      * @param double creditToAdd - the amount of credit to add
     */
-    void AddCredit(User user, double creditToAdd);
+    void AddCredit(User* , float , char);
 
     /** Process the user buy a ticket.
      * @param User buyer - buyer of ticket
@@ -45,9 +51,9 @@ public:
     /** Process refund of a ticket
      * @param User buyer - user to refund credit to
      * @param User seller - user to refund credit from
-     * @param double creditAmount - credit transfered between buyer and seller
+     * @param float creditAmount - credit transfered between buyer and seller
     */
-    void Refund(User buyer, User seller, double creditAmount);
+    void Refund(User*, User* , float, char);
 
     /** Process removal of credit from a user account
      * @param User user - user account to remove credit from
