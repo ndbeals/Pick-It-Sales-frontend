@@ -18,36 +18,26 @@ namespace UserInput {
 		// bool validInput = false;
 		std::string input;
 
-		// loop while the input is not valid
-		// while ( !validInput ) {
-			std::getline( std::cin , input );
-			
-			
-			if (std::cin.eof()) {
-				exit(0);
-			}
+		std::getline( std::cin , input );
+		
+		
+		if (std::cin.eof()) {
+			exit(0);
+		}
 
-			
-			// trim leading and trailing spaces.
-			input = trim(input);
+		
+		// trim leading and trailing spaces.
+		input = trim(input);
 
-			// validate input against min and max length;
-			if ( input.length() < minLength ) {
-				// too short
-				errorPrintf(tooShortError.c_str());
-			}
-			else if ( input.length() > maxLength ) {
-				// too long
-				errorPrintf(tooLongError.c_str());
-				// ErrorPrintf("%s%s%s" , "Input too long\n","test\n");
-			}
-			else {
-				// validation passed.
-				// validInput = true;
-			}
-
-			// printf("input is: %s\n",input.c_str());
-		// }
+		// validate input against min and max length;
+		if ( input.length() < minLength ) {
+			// too short
+			errorPrintf(tooShortError.c_str());
+		}
+		else if ( input.length() > maxLength ) {
+			// too long
+			errorPrintf(tooLongError.c_str());
+		}
 
 		return input;
 	}
@@ -76,7 +66,7 @@ namespace UserInput {
 				inputNum = std::stoi( input , &charCount );
 
 				// check if input stream is PURELY a number
-				if ( (input.length() == (uint)charCount ) ) {
+				if ( (input.length() == charCount ) ) {
 					// If it didn't error, set validInput to true:
 					validInput = true;
 					if (inputNum < min) {
@@ -94,7 +84,6 @@ namespace UserInput {
 			catch(const std::invalid_argument& e)
 			{
 				errorPrintf("Invalid input, enter only numbers\n");
-				// std::cerr << "A?" << e.what() << '\n';
 			}
 			catch(const std::exception &e)
 			{
@@ -128,7 +117,7 @@ namespace UserInput {
 				inputNum = std::stof( input , &charCount );
 
 				// check if input stream is PURELY a number
-				if ( (input.length() == (uint)charCount ) ) {
+				if ( (input.length() == charCount ) ) {
 					// If it didn't error, set validInput to true:
 					validInput = true;
 					if (inputNum < min) {
@@ -146,7 +135,6 @@ namespace UserInput {
 			catch(const std::invalid_argument& e)
 			{
 				errorPrintf("Invalid input, enter only numbers\n");
-				// std::cerr << "A?" << e.what() << '\n';
 			}
 			catch(const std::exception &e)
 			{

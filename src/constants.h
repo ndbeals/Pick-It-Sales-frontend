@@ -14,7 +14,6 @@
 // STRING CONSTANTS
 #define COMMAND_PROMPT_PREFIX "Enter a command: "
 #define COMMAND_NOT_PERMITTED_ADMIN "You are not permitted to access this.\n"
-// #define COMMAND_NOT_PERMITTED_BUY "You Buy-Standard users are not allowed to .\n"
 
 #define ERROR_PREFIX "ERROR: "
 #define ERROR_COMMAND "invalid command.\n"
@@ -64,8 +63,6 @@
 #define DELETE_ERROR_CANT_DELETE_SELF "Cannot delete the logged in account.\n"
 #define DELETE_PROMPT_SUCCESS "Successfully deleted the user.\n"
 #define DELETE_PROMPT_NAME "Enter a username to delete: "
-// #define DELETE_
-// #define DELETE_
 
 // REFUND Prompts
 #define REFUND_PROMPT_BUYER "Enter the buyer's username: "
@@ -107,23 +104,13 @@
 
 // TRANSACTION TYPES
 enum TRANSACTION {
-    T00_END_OF_SESSION = 00,
-    T01_CREATE = 01,
-    T02_DELETE = 02,
-    T03_SELL = 03,
-    T04_BUY = 04,
-    T05_REFUND = 05,
-    T06_ADD_CREDIT = 06
+	T00_END_OF_SESSION = 00,
+	T01_CREATE = 01,
+	T02_DELETE = 02,
+	T03_SELL = 03,
+	T04_BUY = 04,
+	T05_REFUND = 05,
+	T06_ADD_CREDIT = 06
 };
-
-// const boost::map<const char*, TRANSACTION> commandToTransaction = boost::assign::map_list_of
-//     ("exit", T00_END_OF_SESSION)
-//     ("create", T01_CREATE)
-//     ("delete",T02_DELETE)
-//     ("sell", T03_SELL)
-//     ("buy", T04_BUY)
-//     ("refund", T05_REFUND)
-//     ("addcredit", T06_ADD_CREDIT)
-// ;
 
 #endif

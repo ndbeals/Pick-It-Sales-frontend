@@ -35,9 +35,10 @@ class Session
 		LoggedOut,
 	};
 
-	/// List of all the available users
+	/// Map of all the available users
 	static std::map<std::string, class User> AvailableUsers;
 
+	/// Map of all available tickets
 	static std::map<std::string, TicketBatch> AvailableTickets;
 
 	/// Users file location (set by startup arg)
@@ -76,10 +77,10 @@ public:
 	 */
 	static void ReadTicketsFile();
 
-	/** Reads the available users file.
-	 * 
+	/** Read the available users file and parse it into a map where the keys are the string names and the values are the user objects.
+	 * @return map< string , User > of available users.
 	 */
-	void ReadUserFile();
+	static void ReadUsersFile();
 
 
 	/** Prompts user for a command (only accepts 'login'). 

@@ -107,55 +107,13 @@ int main(int argc, char *argv[]) {
 		Session::DailyTransactionFile = std::string( argv[3] );
 	}
 	
-	
-
-
-	// printf("ADHSDHS: %s\n",path.c_str());
-	// chdir( readLink( "/proc/self/cwd" ).c_str() );
-	
-	// printf("CWD: %s to: %s\n",get_current_dir_name() );
-
-
-
-	// sysinfo (&memInfo);
-	// long long totalVirtualMem = memInfo.totalram;
-	// //Add other values in next statement to avoid int overflow on right hand side...
-	// totalVirtualMem += memInfo.totalswap;
-	// totalVirtualMem *= memInfo.mem_unit;
-
-	// printf("Total mem before: %d\n" , getValue());
-
-
-	// Parse the following two arguments (they are the file paths, local to the binary)
-	// std::string userFileLocation = "./AvailableTickets.txt"; //argv[1];
-
-	// std::string test("./AvailableTickets.txt");
-
-	// for(int i = 0; i < 10000; i++)
-	// {
-		// getFullPath(userFileLocation);
-	// }
-	
-
-	// sysinfo (&memInfo);
-	// totalVirtualMem = memInfo.totalram;
-	// //Add other values in next statement to avoid int overflow on right hand side...
-	// totalVirtualMem += memInfo.totalswap;
-	// totalVirtualMem *= memInfo.mem_unit;
-
-	// printf("Total mem after : %d\n" , getValue());
-
-	
-	// printf(" passed loc: %s %s\n",getFullPath(userFileLocation).c_str(),argv[1]);
-
-
 	// hello world!
-	printf("Welcome to Pick-It Sales!\n" ); //\n\nfullpath: %s\n",getFullPath( Session::UserAccountFile).c_str()
+	printf("Welcome to Pick-It Sales!\n" );
 
 	Session currentSession;
-	Session::AvailableUsers = readUsersFile();
+	// Session::AvailableUsers = readUsersFile();
+	Session::ReadUsersFile();
 	Session::ReadTicketsFile();
-	// Session::AvailableTicketsFile = "test";
 	
 	while( true ){
 		currentSession = Session();
@@ -165,11 +123,9 @@ int main(int argc, char *argv[]) {
 
 		// once logged in, process the main event loop
 		currentSession.ProcessMainEventLoop();
-
-		// currentSession.WriteTransactionFile();
+		// Transactions are written on "logout" command running.
 
 		// currently, to exit, the user type "exit" and it'll call 'exit(0)'
-
 	}
 
 	return 0;

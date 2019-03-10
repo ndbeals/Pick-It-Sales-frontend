@@ -22,11 +22,11 @@ TicketBatch::TicketBatch() {
  * @param float price - price of ticket
  * @param int quantityAvailable - quantity of tickets available
  */
-TicketBatch::TicketBatch(std::string eventTitle, float price, int quantityAvailable , User* seller) {
-	this->eventTitle = eventTitle;
-	this->price = price;
-	this->quantityAvailable = quantityAvailable;
-	this->seller = seller;
+TicketBatch::TicketBatch(std::string newEventTitle, float newPrice, int newQuantity , User* newSeller) {
+	this->eventTitle = newEventTitle;
+	this->price = newPrice;
+	this->quantityAvailable = newQuantity;
+	this->seller = newSeller;
 }
 
 /** TicketBatch constructor
@@ -47,12 +47,12 @@ TicketBatch::TicketBatch(std::string fileLine) {
  * @param string sellerName - name of seller
  * @return TicketBatch - matching object to criteria passed in the params or empty
  */ 
-TicketBatch TicketBatch::find(const std::string eventTitle, const int numberOfTickets, const std::string sellerName) {
+TicketBatch TicketBatch::find(const std::string title, const int numberOfTickets, const std::string sellerName) {
 	TicketBatch ticket;
 
 	for (auto &event : Session::AvailableTickets) {
 		
-		if ((event.first == eventTitle + sellerName) && event.second.getQuantityAvailable() >= numberOfTickets) {
+		if ((event.first == title + sellerName) && event.second.getQuantityAvailable() >= numberOfTickets) {
 			ticket = event.second;
 			break;
 		}
@@ -68,13 +68,6 @@ TicketBatch TicketBatch::find(const std::string eventTitle, const int numberOfTi
 std::string TicketBatch::getEventTitle() {
 	return this->eventTitle;
 }
-
-/**
- * @return User seller
- */ 
-// User* TicketBatch::getSeller() {
-// 	return this->seller;
-// }
 
 /** Returns ticket price
  * @return float price
@@ -93,7 +86,7 @@ int TicketBatch::getQuantityAvailable(){
 /** Sets value for quantity of tickets available
  * @param int quantityAvailable - number of tickets available
  */ 
-void TicketBatch::setQuantityAvailable(const int quantityAvailable) {
-	this->quantityAvailable = quantityAvailable;
+void TicketBatch::setQuantityAvailable( int quantity) {
+	this->quantityAvailable = quantity;
 }
 

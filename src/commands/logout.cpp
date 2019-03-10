@@ -14,16 +14,7 @@ const char Logout::TransactionNumber = 0; // 00;
  */ 
 Logout::Logout( Session* inSession)
 {
-    userSession = inSession;
-}
-
-/// Stub constructor (must exist though)
-Logout::Logout()
-{}
-
-/// Stub deconstructor (must exist though)
-Logout::~Logout()
-{
+	userSession = inSession;
 }
 
 /** Processes the logout command.
@@ -33,8 +24,8 @@ Logout::~Logout()
  */
 bool Logout::Process()
 {
-    bool success = getSession()->LogOut();
-    printf("Logged out!\n");
+	bool success = getSession()->LogOut();
+	printf("Logged out!\n");
 
-    return success;   
+	return success;   
 }

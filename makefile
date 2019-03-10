@@ -15,7 +15,8 @@ DEPEXT      := d
 OBJEXT      := o
 
 #Flags, Libraries and Includes
-CFLAGS      := -Wall -O3 -g -std=c++11
+CFLAGS      := -Wall -Wextra  -Wstrict-aliasing -pedantic -Wno-ignored-qualifiers -Wno-format-nonliteral -fmax-errors=5 -Wunreachable-code -Wcast-align -Wcast-qual -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wstrict-null-sentinel -Wundef -Wno-unused -Wno-variadic-macros -Wno-parentheses -O3 -g -std=c++11
+# disabled CFLAGS (because fmtlib triggers them): -Werror -Wctor-dtor-privacy -Wstrict-overflow=5 -Wswitch-default -Wsign-promo 
 LIB         := -O3 -g
 INC         := -I$(INCDIR) -I/usr/local/include
 INCDEP      := -I$(INCDIR)

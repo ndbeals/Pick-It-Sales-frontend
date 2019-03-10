@@ -31,7 +31,7 @@ std::string Session::DailyTransactionFile;
  */
 Session::Session()
 {
-    this->sessionState = SessionState::New;
+	this->sessionState = SessionState::New;
 }
 /// Stub deconstructor (must exist though)
 Session::~Session()
@@ -45,13 +45,15 @@ Session::~Session()
  */
 void Session::ReadCommandInput()
 {
-    printf(COMMAND_PROMPT_PREFIX);
-    
-    this->userInput = UserInput::GetStringInput(0,25);/// UserInput::GetStringInput(0 , 25);
-    
-    if ( this->userInput=="exit" || std::cin.eof() ){
-        exit(0);
-    }
+	// print the command prompt prefix before asking for input
+	printf(COMMAND_PROMPT_PREFIX);
+	
+	// ask for input
+	this->userInput = UserInput::GetStringInput(0,25);
+	
+	if ( this->userInput=="exit" || std::cin.eof() ){
+		exit(0); // exit program if users type exit
+	}
 }
 
 /** Returns the stored last user input.
@@ -60,7 +62,7 @@ void Session::ReadCommandInput()
  */
 std::string Session::getLastUserInput()
 {
-    return this->userInput;
+	return this->userInput;
 }
 
 
@@ -70,29 +72,21 @@ std::string Session::getLastUserInput()
  */
 void Session::WaitForLogin()
 {
-    while ( this->isLoggedOut() )
-    {
-        this->ReadCommandInput();
+	while ( isLoggedOut() )
+	{
+		ReadCommandInput();
 
-        if ( this->getLastUserInput() == Login::CommandName )
-        {
-
-            Login loginCommand = Login( this );
-
-		    bool suc = loginCommand.Process();
-
-            if (suc) {
-                // setSessionState( SessionState::User );
-                // printf("newstate: %d\n",this->sessionState);
-                // printf("name? %s\n",loginCommand.commandName.c_str());
-            }
-            
-        }
-        else
-        {
-            errorPrintf(LOGIN_FIRST_PROMPT);
-        }
-    }
+		if ( getLastUserInput() == Login::CommandName )
+		{
+			Login loginCommand = Login( this );
+			// create login  command and process it
+			loginCommand.Process();
+		}
+		else
+		{
+			errorPrintf(LOGIN_FIRST_PROMPT);
+		}
+	}
 }
 
 /**
@@ -102,17 +96,16 @@ void Session::WaitForLogin()
  */
 void Session::ProcessMainEventLoop()
 {
-        // printf("proc man lop\n");
-    while( this->isLoggedIn() ){
-        // printf("proc man lop\n");
-        this->ReadCommandInput();
+	while( isLoggedIn() ){ // loop forever while logged in
+		ReadCommandInput(); // prompt for command input
 
-        Command *currentCommand = Command::GetCommandNameFromInput( this->getLastUserInput() , this );
-        currentCommand->Process();
-
-        delete currentCommand;
-    }
-    
+		// parse string input into a user command
+		Command *currentCommand = Command::GetCommandNameFromInput( getLastUserInput() , this );
+		// if it's a valid command, the process will do command specific things, if not, process calls a generic error function
+		currentCommand->Process();
+		// delete the created command
+		delete currentCommand;
+	}
 }
 
 
@@ -122,16 +115,15 @@ void Session::ProcessMainEventLoop()
  */
 bool Session::LogIn( class User* user )
 {
-    // printf("active? %d\n",isActive());
-    if ( isActive() && isLoggedOut() )
-    {
-        // set state to logged on, as the appropriate state.
-        setSessionState( user->getLoggedInSessionState() );
-        setCurrentUser( user );
+	if ( isActive() && isLoggedOut() )
+	{
+		// set state to logged on, as the appropriate state.
+		setSessionState( user->getLoggedInSessionState() );
+		setCurrentUser( user );
 
-        return true;
-    }
-    return false;
+		return true;
+	}
+	return false;
 }
 
 /** Log the user out, sets the state to logged out.
@@ -140,50 +132,76 @@ bool Session::LogIn( class User* user )
  */
 bool Session::LogOut()
 {
-    if ( isLoggedIn() ){
-        Transaction* logout = new Transaction();
+	if ( isLoggedIn() ){
+		Transaction* logout = new Transaction();
 
-        logout->LogOut( getCurrentUser() , Logout::TransactionNumber );
-        AddTransaction( logout );
+		logout->LogOut( getCurrentUser() , Logout::TransactionNumber );
+		AddTransaction( logout );
 
-        this->WriteTransactionFile();
+		WriteTransactionFile();
 
-        // set session state to loggedout and the current user to null.
-        this->setSessionState( SessionState::LoggedOut );
-        setCurrentUser( NULL );
+		// set session state to loggedout and the current user to null.
+		setSessionState( SessionState::LoggedOut );
+		setCurrentUser( NULL );
 
-        return true;
-    }
-    return false;
+		return true;
+	}
+	return false;
 }
 
 /** Read in ticket file to session
  */ 
 void Session::ReadTicketsFile()
 {
-    // std::map<std::string, class User> availableUsers;
-    std::string line;
-    std::ifstream ticketsFile ( AvailableTicketsFile );
+	std::string line;
+	std::ifstream ticketsFile ( getFullPath(AvailableTicketsFile) );
 
-    if ( ticketsFile.is_open() )
-    {
-        while( std::getline( ticketsFile , line ) )
-        {
-            // Don't add the last line of the file to the list
-            if ( trim(line) != END_OF_FILE_LINE )
-            {
-                TicketBatch batch(line);
-                // printf("adding event: %s \n",(batch.getEventTitle() + batch.getSeller()->getUserName()).c_str());
-                AvailableTickets.insert( std::pair<std::string,TicketBatch>( (batch.getEventTitle() + batch.getSeller()->getUserName()) ,batch));
-            }
-        }
-    }
-    ticketsFile.close();
-
-    // printf("tickets %d\n",AvailableTickets.size());
-    // return availableUsers;
+	if ( ticketsFile.is_open() )
+	{
+		while( std::getline( ticketsFile , line ) )
+		{
+			// Don't add the last line of the file to the list
+			if ( trim(line) != END_OF_FILE_LINE )
+			{
+				TicketBatch batch(line);
+				// printf("adding event: %s \n",(batch.getEventTitle() + batch.getSeller()->getUserName()).c_str());
+				AvailableTickets.insert( std::pair<std::string,TicketBatch>( (batch.getEventTitle() + batch.getSeller()->getUserName()) ,batch));
+			}
+		}
+	}
+	ticketsFile.close();
 }
 
+/** Read the available users file and parse it into a map where the keys are the string names and the values are the user objects.
+ * @return map< string , User > of available users.
+ */
+void Session::ReadUsersFile()
+{
+	std::string line;
+	std::ifstream usersFile ( getFullPath( UserAccountFile) );
+
+	if ( usersFile.is_open() )
+	{
+		while( std::getline( usersFile , line ))
+		{
+			// create a stringstream of each line
+			std::istringstream lineStream(line);
+
+			// three variables used to populate the user object
+			std::string name;
+			std::string type;
+			float balance;
+
+			// read from the line stream
+			lineStream >> name >> type >> balance;
+
+			// create the user and insert them into the availableusers map
+			class User aUser(name,type,balance);
+			
+			AvailableUsers.insert(std::pair<std::string,class User>(name,aUser));
+		}
+	}
+}
 
 
 /** Adds a new Transaction to the transaction queue (validTransactions).
@@ -191,35 +209,35 @@ void Session::ReadTicketsFile()
  */
 void Session::AddTransaction( Transaction* validTransaction )
 {
-    validTransactions.push( validTransaction );
+	validTransactions.push( validTransaction );
 }
 
 /** Process writing trasactions to log file
  */ 
 void Session::WriteTransactionFile()
 {
-    // printf("writing transactions\n");
-    
-    std::ofstream transactionFile;
-    transactionFile.open( Session::DailyTransactionFile , std::ios::out | std::ios::app );
+	// printf("writing transactions\n");
+	
+	std::ofstream transactionFile;
+	transactionFile.open( Session::DailyTransactionFile , std::ios::out | std::ios::app );
 
-    while( !validTransactions.empty() && transactionFile.is_open() ){
-        Transaction* currentTransaction = validTransactions.front();
-        std::string trn = currentTransaction->getTransactionString();
+	while( !validTransactions.empty() && transactionFile.is_open() ){
+		Transaction* currentTransaction = validTransactions.front();
+		std::string trn = currentTransaction->getTransactionString();
 
-        transactionFile << trn.c_str();
+		transactionFile << trn.c_str();
 
-        // printf("writing transaction: %d %s \n",trn.length(),trn.c_str());
+		// printf("writing transaction: %d %s \n",trn.length(),trn.c_str());
 
-        validTransactions.pop();
+		validTransactions.pop();
 
-        if (!validTransactions.empty()) {
-            transactionFile << "\n";
-        }
-        
-        // delete currentTransaction;
-    }
+		if (!validTransactions.empty()) {
+			transactionFile << "\n";
+		}
+		
+		// delete currentTransaction;
+	}
 
-    transactionFile.close();
-    
+	transactionFile.close();
+	
 }

@@ -30,12 +30,16 @@ bool inRange( int input , int min , int max );
  */
 std::string trim(const std::string& str);
 
-std::string readLink( std::string );
-std::string getFullPath( std::string );
-
-/** Read the available users file and parse it into a map where the keys are the string names and the values are the user objects.
- * @return map< string , User > of available users.
+/** Convert a symbolic link to the real file system path
+ * @param path the symlink path
+ * @return string the real path
  */
-std::map<std::string,class User> readUsersFile();
+std::string readLink( std::string );
+
+/** Convert a relative path to the full file system path
+ * @param path the relative path
+ * @return string the real path
+ */
+std::string getFullPath( std::string );
 
 #endif

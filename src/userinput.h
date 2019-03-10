@@ -26,7 +26,7 @@ namespace UserInput {
 	 * @param min Minimum value of the integer (default=0)
 	 * @param max Maximum value of the integer (default=10000)
 	 */
-    int GetIntegerInput( int min = 0, int max = 10000 , std::string tooLowError = "input too low" , std::string tooHighError = "input too high" );
+	int GetIntegerInput( int min = 0, int max = 10000 , std::string tooLowError = "input too low" , std::string tooHighError = "input too high" );
 
 	/**
 	 * Read an integer float from the command line, takes a max and min value

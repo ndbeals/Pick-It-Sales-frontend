@@ -18,33 +18,8 @@ const char Login::TransactionNumber = 1;
  */ 
 Login::Login( Session* inSession )
 {
-    userSession = inSession;
+	userSession = inSession;
 }
-
-/// Stub constructor (must exist though)
-Login::Login()
-{}
-
-/// Stub deconstructor (must exist though)
-Login::~Login()
-{
-}
-
-
-/** Validates that the user input is a valid username. 
- * @param user input.
- * @return Valid user name or not.
- */
-bool Login::validateUserName( std::string input )
-{
-    if ( Session::AvailableUsers.find(input) == Session::AvailableUsers.end() )
-    {
-        // not found
-        return false;
-    }
-    return true;
-}
-
 
 /** Processes the login command.
  * 
@@ -53,38 +28,38 @@ bool Login::validateUserName( std::string input )
  */
 bool Login::Process()
 {
-    // check if already logged in, if so, print the associated error and return
-    if ( getSession()->isLoggedIn() )
-    {
-        errorPrintf(LOGIN_TWICE_ERROR);
-        return true;
-    }
+	// check if already logged in, if so, print the associated error and return
+	if ( getSession()->isLoggedIn() )
+	{
+		errorPrintf(LOGIN_TWICE_ERROR);
+		return true;
+	}
 
-    printf("Enter a username: ");
+	printf("Enter a username: ");
 
-    // Loop continuously until we get a valid input.    
-    bool success = false;
-    while ( !success )
-    {
-        // get user cli input
-        std::string username = UserInput::GetStringInput( 0 , 15 );
+	// Loop continuously until we get a valid input.    
+	bool success = false;
+	while ( !success )
+	{
+		// get user cli input
+		std::string username = UserInput::GetStringInput( 0 , 15 );
 
-        // validate the username is valid
-        if ( this->validateUserName( username ) )
-        {
-            User* login = &Session::AvailableUsers.find( username )->second;
-            success = getSession()->LogIn( login );
+		// validate the username is valid
+		if ( this->validateUserName( username ) )
+		{
+			User* login = &Session::AvailableUsers.find( username )->second;
+			success = getSession()->LogIn( login );
 
-            if ( success ) 
-            {
-                printf("Welcome, %s!\n" , login->getUserName().c_str() );
-            }
-        }
-        else
-        {
-            printf("Invalid username, try again: ");
-        }
-    }
+			if ( success ) 
+			{
+				printf("Welcome, %s!\n" , login->getUserName().c_str() );
+			}
+		}
+		else
+		{
+			printf("Invalid username, try again: ");
+		}
+	}
 
-    return success;
+	return success;
 }

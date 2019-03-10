@@ -24,13 +24,7 @@
  */
 void Transaction::LogOut( class User* user , char transactionNumber )
 {
-    // printf("logging out: %s\n",user->getUserName().c_str());
-
-    // this->transactionString =  "00_" + user->getUserName();
-    this->transactionString = fmt::format("{0:02d} {1:<15} {2:2} {3:#09.2f}",transactionNumber,user->getUserName(),user->getUserType(),user->getUserBalance());
-    // this->transactionString = fmt::format("{0} {1:<15}","00",user->getUserName());
-    // printf("length: %d  %s\n",this->transactionString.length(),getTransactionString().c_str());
-
+	this->transactionString = fmt::format("{0:02d} {1:<15} {2:2} {3:#09.2f}",transactionNumber,user->getUserName(),user->getUserType(),user->getUserBalance());
 }
 
 /** Makes a Create transaction when a user is created
@@ -39,7 +33,7 @@ void Transaction::LogOut( class User* user , char transactionNumber )
  */
 void Transaction::Create( class User* user , char transactionNumber )
 {
-    this->transactionString = fmt::format("{0:02d} {1:<15} {2:2} {3:#09.2f}",transactionNumber,user->getUserName(),user->getUserType(),user->getUserBalance());
+	this->transactionString = fmt::format("{0:02d} {1:<15} {2:2} {3:#09.2f}",transactionNumber,user->getUserName(),user->getUserType(),user->getUserBalance());
 }
 
 /** Makes a Delete transaction when a user is created
@@ -48,14 +42,12 @@ void Transaction::Create( class User* user , char transactionNumber )
  */
 void Transaction::Delete( class User* user , char transactionNumber )
 {
-    this->transactionString = fmt::format("{0:02d} {1:<15} {2:2} {3:#09.2f}",transactionNumber,user->getUserName(),user->getUserType(),user->getUserBalance());
+	this->transactionString = fmt::format("{0:02d} {1:<15} {2:2} {3:#09.2f}",transactionNumber,user->getUserName(),user->getUserType(),user->getUserBalance());
 }
 
 void Transaction::Sell( TicketBatch sellBatch , char transactionNumber)
 {
-    // printf("sell? %d %s %s %d %f\n",transactionNumber,sellBatch.getEventTitle().c_str(),sellBatch.getSeller()->getUserName().c_str(),sellBatch.getQuantityAvailable(),sellBatch.getPrice());
-    this->transactionString = fmt::format("{0:02d} {1:<25} {2:<15} {3:<3} {4:#06.2f}",transactionNumber,sellBatch.getEventTitle(),sellBatch.getSeller()->getUserName(),sellBatch.getQuantityAvailable(),sellBatch.getPrice());
-    // printf("TRAN STR: %d \n",sellBatch.getQuantityAvailable())a;
+	this->transactionString = fmt::format("{0:02d} {1:<25} {2:<15} {3:<3} {4:#06.2f}",transactionNumber,sellBatch.getEventTitle(),sellBatch.getSeller()->getUserName(),sellBatch.getQuantityAvailable(),sellBatch.getPrice());
 }
 
 /** Process the user buy a ticket.
@@ -65,7 +57,7 @@ void Transaction::Sell( TicketBatch sellBatch , char transactionNumber)
 */
 void Transaction::BuyTicket(TicketBatch sellBatch, int buyAmount, char transactionNumber) 
 {
-    this->transactionString = fmt::format("{0:02d} {1:<25} {2:<15} {3:03d} {4:#06.2f}",transactionNumber,sellBatch.getEventTitle(),sellBatch.getSeller()->getUserName(),buyAmount,sellBatch.getPrice());
+	this->transactionString = fmt::format("{0:02d} {1:<25} {2:<15} {3:03d} {4:#06.2f}",transactionNumber,sellBatch.getEventTitle(),sellBatch.getSeller()->getUserName(),buyAmount,sellBatch.getPrice());
 }
 
 /** Process refund of a ticket
@@ -74,18 +66,18 @@ void Transaction::BuyTicket(TicketBatch sellBatch, int buyAmount, char transacti
  * @param double creditAmount - credit transfered between buyer and seller
 */
 void Transaction::Refund(class User* buyer,class User* seller, float amount , char transactionNumber) {
-    this->transactionString = fmt::format("{0:02d} {1:<15} {2:<15} {3:#09.2f}",transactionNumber,buyer->getUserName(),seller->getUserName(),amount);
+	this->transactionString = fmt::format("{0:02d} {1:<15} {2:<15} {3:#09.2f}",transactionNumber,buyer->getUserName(),seller->getUserName(),amount);
 }
 
 void Transaction::AddCredit( class User* creditUser , float amount , char transactionNumber )
 {
-    this->transactionString = fmt::format("{0:02d} {1:<15} {2:2} {3:#09.2f}",transactionNumber,creditUser->getUserName(),creditUser->getUserType(),amount);
+	this->transactionString = fmt::format("{0:02d} {1:<15} {2:2} {3:#09.2f}",transactionNumber,creditUser->getUserName(),creditUser->getUserType(),amount);
 }
 
 /// Stub constructor (must exist though)
 Transaction::Transaction()
 {
-    
+	
 }
 
 /// Stub deconstructor (must exist though)
