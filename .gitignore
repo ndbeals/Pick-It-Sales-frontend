@@ -9,6 +9,10 @@ tests/results/**/
 html/*
 docs/*
 
+.vscode
+.vscode/
+.vscode/*
+
 loginout
 
 # Prerequisites
