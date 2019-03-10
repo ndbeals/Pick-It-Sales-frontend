@@ -3,4 +3,5 @@ Enter a command:
 Enter a username: 
 Welcome, userSS!
 Enter a command: 
-ERROR: You may not purchase tickets as a sell-only account.
+ERROR: Your account type may not buy tickets.
+Enter a command: 

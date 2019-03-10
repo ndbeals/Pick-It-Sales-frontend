@@ -39,6 +39,16 @@ bool Command::Process()
     return false;
 }
 
+bool Command::validateUserName( std::string input )
+{
+    if ( Session::AvailableUsers.find(input) == Session::AvailableUsers.end() )
+    {
+        // not found
+        return false;
+    }
+    return true;
+}
+
 /** Factory function to create commands.
  * @param string commandName - name of command
  * @param Session* session - current session

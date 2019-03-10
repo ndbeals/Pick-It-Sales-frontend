@@ -43,7 +43,7 @@ private:
      * @param user input.
      * @return Valid user name or not.
      */
-    bool validateUserName( std::string );
+    // bool validateUserName( std::string );
 
 public:
     /// string name of this command

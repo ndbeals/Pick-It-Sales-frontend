@@ -56,7 +56,7 @@ void Transaction::Sell( TicketBatch sellBatch , char transactionNumber)
 */
 void Transaction::BuyTicket(TicketBatch sellBatch, int buyAmount, char transactionNumber) 
 {
-    this->transactionString = fmt::format("{0:02d} {1:<25} {2:<15} {3:<3} {4:#06.2f}",transactionNumber,sellBatch.getEventTitle(),sellBatch.getSeller()->getUserName(),sellBatch.getQuantityAvailable()-buyAmount,sellBatch.getPrice());
+    this->transactionString = fmt::format("{0:02d} {1:<25} {2:<15} {3:03d} {4:#06.2f}",transactionNumber,sellBatch.getEventTitle(),sellBatch.getSeller()->getUserName(),buyAmount,sellBatch.getPrice());
 }
 
 /** Process refund of a ticket

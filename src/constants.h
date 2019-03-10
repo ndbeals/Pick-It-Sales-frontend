@@ -49,6 +49,7 @@
 #define BUY_PROMPT_SELLER_NAME "Enter the seller's name: "
 #define BUY_PROMPT_SUCCESS "Successfully purchased tickets.\n"
 #define BUY_PROMPT_CONFIRM "Would you like to purchase this?: "
+#define BUY_ERROR_WRONG_EVENT "You must enter a valid title.\n"
 #define BUY_ERROR_WRONG_ACCOUNT "Your account type may not buy tickets.\n"
 #define BUY_ERROR_EVENT_TOO_LONG "Event Title too long.\n"
 #define BUY_ERROR_EVENT_TOO_SHORT "Empty string not valid as Event Title.\n"

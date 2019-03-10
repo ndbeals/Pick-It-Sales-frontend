@@ -31,6 +31,14 @@ public:
     virtual ~Command();
 
 
+    /** Validates that the user input is a valid username. 
+     * @param user input.
+     * @return Valid user name or not.
+     */
+    bool validateUserName( std::string );
+
+
+
     /** Processes the command
      * 
      * this is the function declaration that'll be overwritten by each child to implement their specific functionality.
