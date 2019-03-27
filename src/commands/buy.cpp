@@ -45,7 +45,7 @@ bool Buy::Process()
 		// get user cli input
 		std::string eventTitle = UserInput::GetStringInput( MIN_EVENTTITLE_LENGTH , MAX_EVENTTITLE_LENGTH , BUY_ERROR_EVENT_TOO_LONG , BUY_ERROR_EVENT_TOO_SHORT);
 		// validate the title name is valid to use
-		if ( !checkEventTitle( eventTitle ) )
+		if ( checkEventTitle( eventTitle ) )
 		{
 			bool amountSuccess = false;
 			while( !amountSuccess ){

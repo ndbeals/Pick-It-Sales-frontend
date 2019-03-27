@@ -90,10 +90,12 @@ bool Command::checkEventTitle( std::string input )
     for(std::map<std::string,class TicketBatch>::iterator iter = Session::AvailableTickets.begin(); iter != Session::AvailableTickets.end(); ++iter)
     {
         std::string key = iter->first;
-        if ( key.find(input) ) {
+        std::string val = iter->second.getEventTitle();
+        if ( val == input || key == input ) {
             return true;
         }
     }
+	
     return false;
 }
 

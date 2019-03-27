@@ -227,15 +227,11 @@ void Session::WriteTransactionFile()
 
 		transactionFile << trn.c_str();
 
-		// printf("writing transaction: %d %s \n",trn.length(),trn.c_str());
-
 		validTransactions.pop();
 
-		if (!validTransactions.empty()) {
-			transactionFile << "\n";
-		}
-		
-		// delete currentTransaction;
+		// if (!validTransactions.empty()) {
+		transactionFile << "\n";
+		// }
 	}
 
 	transactionFile.close();

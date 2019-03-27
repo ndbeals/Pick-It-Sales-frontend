@@ -19,7 +19,7 @@ class TicketBatch;
  */
 class Session
 {
-	public:
+public:
 	/// Enum to describe the different session states
 	enum SessionState
 	{

@@ -47,6 +47,7 @@ bool Sell::Process()
 		errorPrintf(SELL_ERROR_WRONG_ACCOUNT);
 		return false;
 	}
+	std::string userName = getSession()->getCurrentUser()->getUserName();
 
 	// Loop continuously until we get a valid input.    
 	bool titleSuccess = false;
@@ -57,7 +58,7 @@ bool Sell::Process()
 		// get user cli input
 		std::string eventTitle = UserInput::GetStringInput( MIN_EVENTTITLE_LENGTH , MAX_EVENTTITLE_LENGTH , SELL_ERROR_EVENT_TOO_LONG , SELL_ERROR_EVENT_TOO_SHORT);
 		// validate the username is valid to use
-		if ( checkEventTitleLength( eventTitle ) )
+		if ( checkEventTitleLength( eventTitle ) && (Session::AvailableTickets.find(eventTitle + userName) == Session::AvailableTickets.end()) )
 		{
 			bool priceSuccess = false;
 			while( !priceSuccess){
@@ -74,7 +75,6 @@ bool Sell::Process()
 						// check if input credit is valid, if so, proceed
 						if ( checkTicketAmount( ticketAmount ) ) {
 							amountSuccess = priceSuccess = titleSuccess = true; // credit is valid, stop asking for info.
-							// printf("User %d has been successfully selld.\n",ticketAmount);
 							printf(SELL_PROMPT_SUCCESS);
 
 							TicketBatch newBatch( eventTitle, salePrice , ticketAmount , getSession()->getCurrentUser() );
@@ -83,19 +83,15 @@ bool Sell::Process()
 							sell->Sell( newBatch , TransactionNumber );
 							getSession()->AddTransaction( sell );
 						}
-						
 					}
 				}
-				// else
-				// {
-					// errorPrintf(CREATE_ERROR_INVALID_TYPE);
-				// }
 			}
 		}
-		else if ( checkEventTitle( eventTitle ) && checkEventTitleLength( eventTitle ) )
+		else if ( !(Session::AvailableTickets.find(eventTitle + userName) == Session::AvailableTickets.end()) )
 		{
-			errorPrintf(CREATE_ERROR_NAME_TAKEN);
+			errorPrintf("You are already selling tickets at this event\n");
 		}
+		
 	}
 
 	return titleSuccess;
