@@ -1,7 +1,7 @@
 ./src/main
 ./main
 
-inc/*
+# inc/*
 
 *.zip
 *.trn
